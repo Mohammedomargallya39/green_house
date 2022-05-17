@@ -64,7 +64,7 @@ class SettingsWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      space40Horizontal(context),
+                      space10Horizontal(context),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,6 +153,8 @@ class SettingsWidget extends StatelessWidget {
                               ),
                             );
                           },
+
+                        // (){}
                       ),
                       SettingsItem(
                         title: appTranslation(context).language,

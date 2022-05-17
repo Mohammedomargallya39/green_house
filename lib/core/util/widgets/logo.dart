@@ -17,9 +17,7 @@ class AppLogo extends StatelessWidget {
           'assets/images/logo.png',
           width: pxToDp(140.0),
           height: pxToDp(120.0),
-          color: AppCubit
-              .get(context)
-              .isDark ? HexColor(regularGrey) : HexColor(mainColor),
+          //color: AppCubit.get(context).isDark ? HexColor(regularGrey) : HexColor(mainColor),
         );
       },
     );
