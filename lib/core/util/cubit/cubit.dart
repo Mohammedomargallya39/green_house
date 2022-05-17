@@ -48,9 +48,9 @@ class AppCubit extends Cubit<AppState> {
   }) {
     isRtl = rtl;
     isRtlChange = rtl;
-    isDark = false;
+    isDark = dark;
 
-    debugPrint('dark mode ------------- $isDark');
+    debugPrint('dark mode now is------------- $isDark');
 
     changeTheme();
 
@@ -166,6 +166,85 @@ class AppCubit extends Cubit<AppState> {
           fontWeight: FontWeight.w700,
           color: whiteColor,
           height: 1.4,
+        ),
+      ),
+    );
+
+    darkTheme = ThemeData(
+      scaffoldBackgroundColor: HexColor(scaffoldBackgroundDark),
+      appBarTheme: AppBarTheme(
+        systemOverlayStyle: Platform.isIOS
+            ? null
+            : SystemUiOverlayStyle(
+          statusBarColor: HexColor(scaffoldBackgroundDark),
+          statusBarIconBrightness: Brightness.light,
+        ),
+        backgroundColor: HexColor(scaffoldBackgroundDark),
+        elevation: 0.0,
+        titleSpacing: 0.0,
+        iconTheme: IconThemeData(
+          size: 20.0,
+          color: HexColor(regularGrey),
+        ),
+        titleTextStyle: TextStyle(
+          color: HexColor(regularGrey),
+          fontFamily: family,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: HexColor(scaffoldBackgroundDark),
+        elevation: 50.0,
+        selectedItemColor: HexColor(mainColor),
+        unselectedItemColor: HexColor(regularGrey),
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const TextStyle(
+          height: 1.5,
+        ),
+      ),
+      primarySwatch: const MaterialColor(955, color),
+      textTheme: TextTheme(
+        headline6: TextStyle(
+          fontSize: pxToDp(20.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w700,
+          color: HexColor(secondaryDark),
+        ),
+        bodyText1: TextStyle(
+          fontSize: pxToDp(16.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w400,
+          color: HexColor(secondaryVariantDark),
+        ),
+        bodyText2: TextStyle(
+          fontSize: pxToDp(14.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w700,
+          color: HexColor(secondaryVariantDark),
+        ),
+        subtitle1: TextStyle(
+          fontSize: pxToDp(12.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w700,
+          color: HexColor(secondaryVariantDark),
+        ),
+        subtitle2: TextStyle(
+          fontSize: pxToDp(12.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w400,
+          color: HexColor(secondaryVariantDark),
+        ),
+        caption: TextStyle(
+          fontSize: pxToDp(11.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w400,
+          color: HexColor(secondaryDark),
+        ),
+        button: TextStyle(
+          fontSize: pxToDp(16.0),
+          fontFamily: family,
+          fontWeight: FontWeight.w700,
+          color: whiteColor,
         ),
       ),
     );

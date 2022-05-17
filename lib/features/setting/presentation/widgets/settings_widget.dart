@@ -48,7 +48,8 @@ class SettingsWidget extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                fontWeight: FontWeight.w700
+                              fontWeight: FontWeight.w700,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                             ),
                             ),
                             space3Vertical(context),
@@ -68,7 +69,11 @@ class SettingsWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Icon(Icons.list_alt_outlined),
+                            Icon(
+                                Icons.list_alt_outlined,
+                                size: 22,
+                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                            ),
                             space3Vertical(context),
                             Text(
                               appTranslation(context).myOrders,
@@ -86,7 +91,11 @@ class SettingsWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Icon(Icons.point_of_sale_outlined),
+                             Icon(
+                                Icons.point_of_sale_outlined,
+                                size: 22,
+                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                            ),
                             space3Vertical(context),
                             Text(
                               appTranslation(context).myPoints,
@@ -131,8 +140,16 @@ class SettingsWidget extends StatelessWidget {
                                 fullTitleFirstOption: appTranslation(context).lightMode,
                                 secondTitleOption: Icons.brightness_4_outlined,
                                 fullSecondTitleOption: appTranslation(context).darkMode,
-                                onTapFirstOption: () {},
-                                onTapSecondOption: () {},
+                                onTapFirstOption: ()
+                                {
+                                  AppCubit.get(context).changeMode(value: false);
+                                  Navigator.pop(context);
+                                },
+                                onTapSecondOption: ()
+                                {
+                                  AppCubit.get(context).changeMode(value: true);
+                                  Navigator.pop(context);
+                                },
                               ),
                             );
                           },
@@ -264,6 +281,14 @@ class SettingsWidget extends StatelessWidget {
                         },
                       ),
                       SettingsItem(
+                        title: appTranslation(context).termsOfUse,
+                        icon: Icons.account_tree_outlined,
+                        function: ()
+                        {
+
+                        },
+                      ),
+                      SettingsItem(
                         title: appTranslation(context).howToUse,
                         icon: Icons.help_outline_outlined,
                         function: ()
@@ -274,14 +299,6 @@ class SettingsWidget extends StatelessWidget {
                       SettingsItem(
                         title: appTranslation(context).partners,
                         icon: Icons.apartment_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).termsOfUse,
-                        icon: Icons.account_tree_outlined,
                         function: ()
                         {
 
