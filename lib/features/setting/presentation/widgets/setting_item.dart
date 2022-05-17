@@ -52,7 +52,8 @@ class SettingsItem extends StatelessWidget {
                       Icon(
                         icon,
                         size: 16.0,
-                        color: HexColor(secondaryVariant),
+                        color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                        //HexColor(secondaryVariant),
                       ),
                     if (showIcon) space10Horizontal(context),
                     if (showAssetsIcon)
@@ -65,7 +66,10 @@ class SettingsItem extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: Theme.of(context).textTheme.bodyText2,
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
                       ),
                     ),
                     if (showPhone)
@@ -74,7 +78,9 @@ class SettingsItem extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .subtitle1!
-                            .copyWith(color: HexColor(secondaryVariant)),
+                            .copyWith(
+                            color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                        ),
                       ),
                     space20Horizontal(context),
                     if (sign)
@@ -87,7 +93,7 @@ class SettingsItem extends StatelessWidget {
                             Icon(
                               Icons.keyboard_arrow_right,
                               size: 16.0,
-                              color:HexColor(secondaryVariant),
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                             ),
                       ),
                   ],

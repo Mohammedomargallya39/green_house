@@ -5,7 +5,6 @@ import 'core/di/injection.dart' as di;
 import 'core/di/injection.dart';
 import 'core/network/local/cache_helper.dart';
 import 'core/network/remote/api_endpoints.dart';
-import 'core/util/bloc_observer.dart';
 import 'core/util/constants.dart';
 import 'core/util/cubit/cubit.dart';
 import 'core/util/cubit/state.dart';
@@ -32,9 +31,9 @@ void main() async {
 
 
   await sl<CacheHelper>().get('isDark').then((value) {
-    debugPrint('dark mode ------------- $value');
+    debugPrint('dark mode in cubit is------------- $value');
     if (value != null) {
-      isDark = isDark;
+      isDark = value;
     }
   });
 
@@ -91,7 +90,7 @@ class MyApp extends StatelessWidget {
                 ? ThemeMode.dark
                 : ThemeMode.light,
             theme: AppCubit.get(context).lightTheme,
-            // darkTheme: AppCubit.get(context).darkTheme,
+            darkTheme: AppCubit.get(context).darkTheme,
             home:
             // const SettingsPage(),
             // const LoginScreen(),

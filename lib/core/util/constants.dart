@@ -45,6 +45,9 @@ String scaffoldBackgroundDark = '333739';
 const String secondBackground = '393d40';
 String secondaryVariantDark = '8a8a89';
 
+String secondaryDark = 'ffffff';
+
+
 const Color whiteColor = Colors.white;
 const Color blackColor = Colors.black;
 

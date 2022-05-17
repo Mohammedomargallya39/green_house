@@ -38,12 +38,14 @@ class TwoOptionsDialog extends Dialog {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   message,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.normal,
+                      color: AppCubit.get(context).isDark ? whiteColor: blackColor,
 
 
                       ),
@@ -61,7 +63,6 @@ class TwoOptionsDialog extends Dialog {
                   ],
                 ),
               ],
-              mainAxisAlignment: MainAxisAlignment.center,
             ),
           ),
         ),
