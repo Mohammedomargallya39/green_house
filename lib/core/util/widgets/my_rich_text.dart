@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
+import '../constants.dart';
 import 'my_text_button.dart';
 
 class MyRichText extends StatelessWidget {
@@ -27,6 +29,11 @@ class MyRichText extends StatelessWidget {
                 MyTextButton(
                   title: textButton,
                   onTap: onTap,
+                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    color: HexColor(mainColor),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 13,
+                  ),
                 ),
               ],
             )

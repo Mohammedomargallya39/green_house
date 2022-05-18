@@ -6,11 +6,13 @@ import '../constants.dart';
 class MyTextButton extends StatelessWidget {
   final String title;
   final Function() onTap;
+  final TextStyle style;
 
   const MyTextButton({
     Key? key,
     required this.title,
     required this.onTap,
+    required this.style
   }) : super(key: key);
 
   @override
@@ -19,10 +21,7 @@ class MyTextButton extends StatelessWidget {
       onPressed: onTap,
       child: Text(
         title,
-        style: Theme.of(context).textTheme.subtitle1!.copyWith(
-              color: HexColor(mainColor),
-              fontWeight: FontWeight.w700,
-            ),
+        style: style
       ),
     );
   }
