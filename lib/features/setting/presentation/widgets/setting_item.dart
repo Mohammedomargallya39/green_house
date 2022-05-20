@@ -44,7 +44,15 @@ class SettingsItem extends StatelessWidget {
               },
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: paddingHorizontal, vertical: 20.0),
+                  horizontal: responsiveValue(
+                    context,
+                    12.0,
+                  ),
+                  vertical: responsiveValue(
+                    context,
+                    18.0,
+                  ),
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

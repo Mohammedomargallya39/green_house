@@ -85,8 +85,6 @@ class MainPageScreen extends StatelessWidget {
             },
           ),
         ),
-        // HideKeyboardPage(child: MainWidget()
-        // ),
     );
   }
 }

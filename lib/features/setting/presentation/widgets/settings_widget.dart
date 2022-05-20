@@ -8,6 +8,7 @@ import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/cubit/state.dart';
 import '../../../../core/util/widgets/logo.dart';
 import '../../../../core/util/widgets/two_options_dialog.dart';
+import '../pages/help_page.dart';
 import 'choose_between_two_options.dart';
 
 class SettingsWidget extends StatelessWidget {
@@ -20,13 +21,22 @@ class SettingsWidget extends StatelessWidget {
       {
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-              children:
-              [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveValue(
+                context,
+                12.0,
+              ),
+              vertical: responsiveValue(
+                context,
+                18.0,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                children:
+                [
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CircleAvatar(
@@ -65,14 +75,22 @@ class SettingsWidget extends StatelessWidget {
                         ),
                       ),
                       space10Horizontal(context),
+                    ],
+                  ),
+                  space16Vertical(context),
+                  bigDivider(context),
+                  space16Vertical(context),
+
+                  Row(
+                    children: [
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
-                                Icons.list_alt_outlined,
-                                size: 22,
-                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                              Icons.list_alt_outlined,
+                              size: 22,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                             ),
                             space3Vertical(context),
                             Text(
@@ -91,14 +109,36 @@ class SettingsWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                             Icon(
-                                Icons.point_of_sale_outlined,
-                                size: 22,
-                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                            Icon(
+                              Icons.point_of_sale_outlined,
+                              size: 22,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                             ),
-                            space3Vertical(context),
+                            space3Horizontal(context),
                             Text(
                               appTranslation(context).myPoints,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.caption!.copyWith(
+                                  fontWeight: FontWeight.w700
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      space10Horizontal(context),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.sell_outlined,
+                              size: 22,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                            ),
+                            space3Horizontal(context),
+                            Text(
+                              appTranslation(context).myItems,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context).textTheme.caption!.copyWith(
@@ -111,232 +151,210 @@ class SettingsWidget extends StatelessWidget {
 
                     ],
                   ),
-                ),
-                bigDivider(context),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                            appTranslation(context).settings,
-                            style: Theme.of(context).textTheme.headline6!.copyWith(
-                                fontWeight: FontWeight.w700
-                            ),
+                  space10Vertical(context),
+                  bigDivider(context),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: responsiveValue(
+                        context,
+                        12.0,
+                      ),
+                      vertical: responsiveValue(
+                        context,
+                        18.0,
+                      ),
+                    ),
+                    child: Text(
+                        appTranslation(context).settings,
+                        style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
                         ),
-                      ),
-                      space3Vertical(context),
-                      SettingsItem(
-                          title: appTranslation(context).mode,
-                          icon: Icons.brightness_2_outlined,
-                          function: ()
-                          {
-                            myBottomSheet(
-                              context: context,
-                              widget: ChooseYourOption(
-                                titleFirstOption: Icons.brightness_5_outlined,
-                                fullTitleFirstOption: appTranslation(context).lightMode,
-                                secondTitleOption: Icons.brightness_4_outlined,
-                                fullSecondTitleOption: appTranslation(context).darkMode,
-                                onTapFirstOption: ()
-                                {
-                                  AppCubit.get(context).changeMode(value: false);
-                                  Navigator.pop(context);
-                                },
-                                onTapSecondOption: ()
-                                {
-                                  AppCubit.get(context).changeMode(value: true);
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            );
-                          },
-
-                        // (){}
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).language,
-                        icon: Icons.language_outlined,
-                        function: ()
-                        {
-                          myBottomSheet(
-                              context: context,
-                              widget: ChooseYourOption(
-                                  titleFirstOption: Icons.abc_sharp,
-                                  fullTitleFirstOption: appTranslation(context).english,
-                                  secondTitleOption: Icons.language_outlined,
-                                  fullSecondTitleOption: appTranslation(context).arabic,
-                                  onTapFirstOption: ()
-                                {
-                                    if (AppCubit.get(context).isRtl == false) {
-                                      Navigator.pop(context);
-                                    }
-                                    if (AppCubit.get(context).isRtl == true) {
-                                      AppCubit.get(context).changeLanguage(value: false);
-                                      Navigator.pop(context);
-                                    }
-
-                                  },
-                                  onTapSecondOption: ()
-                                          {
-                                            if (AppCubit.get(context).isRtl == true) {
-                                              Navigator.pop(context);
-                                            }
-                                            if (AppCubit.get(context).isRtl == false) {
-                                              AppCubit.get(context).changeLanguage(value: true);
-                                              Navigator.pop(context);
-                                            }
-                                          },
-                              ),
-                              // Column(
-                              //     crossAxisAlignment: CrossAxisAlignment.start,
-                              //     mainAxisSize: MainAxisSize.min,
-                              //     children:
-                              //     [
-                              //       Padding(
-                              //         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                              //         child: InkWell(
-                              //           onTap: ()
-                              //           {
-                              //             if (AppCubit.get(context).isRtl == false) {
-                              //               Navigator.pop(context);
-                              //             }
-                              //             if (AppCubit.get(context).isRtl == true) {
-                              //               AppCubit.get(context).changeLanguage(value: false);
-                              //               Navigator.pop(context);
-                              //             }
-                              //
-                              //           },
-                              //           child: Row(
-                              //             children: [
-                              //               Text(
-                              //                 '(En)',
-                              //                 style: Theme.of(context).textTheme.bodyText2,
-                              //               ),
-                              //               space10Horizontal(context),
-                              //               Expanded(
-                              //                 child: Text(
-                              //                   appTranslation(context).english,
-                              //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              //                     fontWeight: FontWeight.w400,
-                              //                   ),
-                              //                 ),
-                              //               ),
-                              //             ],
-                              //           ),
-                              //         ),
-                              //       ),
-                              //       const MyDivider(),
-                              //       Padding(
-                              //         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                              //         child: InkWell(
-                              //           onTap: ()
-                              //           {
-                              //             if (AppCubit.get(context).isRtl == true) {
-                              //               Navigator.pop(context);
-                              //             }
-                              //             if (AppCubit.get(context).isRtl == false) {
-                              //               AppCubit.get(context).changeLanguage(value: true);
-                              //               Navigator.pop(context);
-                              //             }
-                              //           },
-                              //           child: Row(
-                              //             children: [
-                              //               Text(
-                              //                 '(Ar)',
-                              //                 style: Theme.of(context).textTheme.bodyText2,
-                              //               ),
-                              //               space10Horizontal(context),
-                              //               Expanded(
-                              //                 child: Text(
-                              //                   appTranslation(context).arabic,
-                              //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              //                     fontWeight: FontWeight.w400,
-                              //                   ),
-                              //                 ),
-                              //               ),
-                              //             ],
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ],
-                              // ),
-                          );
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).aboutUs,
-                        icon: Icons.info_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).connectUs,
-                        icon: Icons.headset_mic_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).termsOfUse,
-                        icon: Icons.account_tree_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).howToUse,
-                        icon: Icons.help_outline_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).partners,
-                        icon: Icons.apartment_outlined,
-                        function: ()
-                        {
-
-                        },
-                      ),
-                      SettingsItem(
-                        title: appTranslation(context).logOut,
-                        icon: Icons.logout_outlined,
-                        function: ()
-                        {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return  TwoOptionsDialog(
-                                  message: appTranslation(context).logoutConfirmation,
-                                  popButtonText: appTranslation(context).cancel,
-                                  pushButtonText:  appTranslation(context).yes,
-                                  pushButtonVoidCallback: (){
-                                    /// في مشكلة هنا///
-                                    Fluttertoast.showToast(
-                                      msg: 'logout success',
-                                    );
-                                    signOut(context);
-                                    AppCubit.get(context).logOut();
-                                  },
-                                  popButtonVoidCallback: (){
-                                    Navigator.pop(context);
-                                  },
-                                );
-                              });
-                        },
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ]
+                  SettingsItem(
+                      title: appTranslation(context).mode,
+                      icon: Icons.brightness_2_outlined,
+                      function: ()
+                      {
+                        myBottomSheet(
+                          context: context,
+                          widget: ChooseYourOption(
+                            titleFirstOption: Icons.brightness_5_outlined,
+                            fullTitleFirstOption: appTranslation(context).lightMode,
+                            secondTitleOption: Icons.brightness_4_outlined,
+                            fullSecondTitleOption: appTranslation(context).darkMode,
+                            onTapFirstOption: ()
+                            {
+                              AppCubit.get(context).changeMode(value: false);
+                              Navigator.pop(context);
+                            },
+                            onTapSecondOption: ()
+                            {
+                              AppCubit.get(context).changeMode(value: true);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        );
+                      },
+
+                    // (){}
+                  ),
+                  SettingsItem(
+                    title: appTranslation(context).language,
+                    icon: Icons.language_outlined,
+                    function: ()
+                    {
+                      myBottomSheet(
+                          context: context,
+                          widget: ChooseYourOption(
+                              titleFirstOption: Icons.abc_sharp,
+                              fullTitleFirstOption: appTranslation(context).english,
+                              secondTitleOption: Icons.language_outlined,
+                              fullSecondTitleOption: appTranslation(context).arabic,
+                              onTapFirstOption: ()
+                            {
+                                if (AppCubit.get(context).isRtl == false) {
+                                  Navigator.pop(context);
+                                }
+                                if (AppCubit.get(context).isRtl == true) {
+                                  AppCubit.get(context).changeLanguage(value: false);
+                                  Navigator.pop(context);
+                                }
+
+                              },
+                              onTapSecondOption: ()
+                                      {
+                                        if (AppCubit.get(context).isRtl == true) {
+                                          Navigator.pop(context);
+                                        }
+                                        if (AppCubit.get(context).isRtl == false) {
+                                          AppCubit.get(context).changeLanguage(value: true);
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                          ),
+                          // Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     mainAxisSize: MainAxisSize.min,
+                          //     children:
+                          //     [
+                          //       Padding(
+                          //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          //         child: InkWell(
+                          //           onTap: ()
+                          //           {
+                          //             if (AppCubit.get(context).isRtl == false) {
+                          //               Navigator.pop(context);
+                          //             }
+                          //             if (AppCubit.get(context).isRtl == true) {
+                          //               AppCubit.get(context).changeLanguage(value: false);
+                          //               Navigator.pop(context);
+                          //             }
+                          //
+                          //           },
+                          //           child: Row(
+                          //             children: [
+                          //               Text(
+                          //                 '(En)',
+                          //                 style: Theme.of(context).textTheme.bodyText2,
+                          //               ),
+                          //               space10Horizontal(context),
+                          //               Expanded(
+                          //                 child: Text(
+                          //                   appTranslation(context).english,
+                          //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          //                     fontWeight: FontWeight.w400,
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       const MyDivider(),
+                          //       Padding(
+                          //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          //         child: InkWell(
+                          //           onTap: ()
+                          //           {
+                          //             if (AppCubit.get(context).isRtl == true) {
+                          //               Navigator.pop(context);
+                          //             }
+                          //             if (AppCubit.get(context).isRtl == false) {
+                          //               AppCubit.get(context).changeLanguage(value: true);
+                          //               Navigator.pop(context);
+                          //             }
+                          //           },
+                          //           child: Row(
+                          //             children: [
+                          //               Text(
+                          //                 '(Ar)',
+                          //                 style: Theme.of(context).textTheme.bodyText2,
+                          //               ),
+                          //               space10Horizontal(context),
+                          //               Expanded(
+                          //                 child: Text(
+                          //                   appTranslation(context).arabic,
+                          //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          //                     fontWeight: FontWeight.w400,
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ],
+                          // ),
+                      );
+                    },
+                  ),
+                  SettingsItem(
+                    title: appTranslation(context).help,
+                    icon: Icons.help_outline_outlined,
+                    function: ()
+                    {
+                      navigateTo(context, const HelpPage());
+                    },
+                  ),
+                  SettingsItem(
+                    title: appTranslation(context).partners,
+                    icon: Icons.apartment_outlined,
+                    function: ()
+                    {
+
+                    },
+                  ),
+                  SettingsItem(
+                    title: appTranslation(context).logOut,
+                    icon: Icons.logout_outlined,
+                    function: ()
+                    {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return  TwoOptionsDialog(
+                              message: appTranslation(context).logoutConfirmation,
+                              popButtonText: appTranslation(context).cancel,
+                              pushButtonText:  appTranslation(context).yes,
+                              pushButtonVoidCallback: (){
+                                /// في مشكلة هنا///
+                                Fluttertoast.showToast(
+                                  msg: 'logout success',
+                                );
+                                signOut(context);
+                                AppCubit.get(context).logOut();
+                              },
+                              popButtonVoidCallback: (){
+                                Navigator.pop(context);
+                              },
+                            );
+                          });
+                    },
+                  ),
+                ]
+            ),
           ),
         );
       },

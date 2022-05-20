@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -352,7 +353,22 @@ class AppCubit extends Cubit<AppState> {
     );
   }
 
+  final List<String> images = [
+    'assets/images/market.png',
+    'assets/images/sell.png',
+    'assets/images/shopping.png',
+  ];
+  int currentSliderIndicator = 0;
+  void changeSlide() {
+    currentSliderIndicator;
+    emit(ChangeSlider());
+  }
 
+  bool customTileExpanded = false;
+  void changeCustomTileExpanded() {
+    customTileExpanded;
+    emit(ChangeCustomTileExpanded());
+  }
 
 
 }

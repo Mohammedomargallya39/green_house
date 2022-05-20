@@ -186,9 +186,7 @@ Future<void> showLogoutDialog({
 
 
 TranslationModel appTranslation(context) =>
-    AppCubit
-        .get(context)
-        .translationModel;
+    AppCubit.get(context).translationModel;
 
 double pxToDp(double pixel) => pixel * 1.2;
 

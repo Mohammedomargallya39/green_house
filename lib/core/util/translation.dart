@@ -48,7 +48,6 @@ class TranslationModel {
   late String northSinai;
   late String matruh;
   late String newValley;
-
   late String arabic;
   late String english;
   late String mode;
@@ -57,17 +56,22 @@ class TranslationModel {
   late String language;
   late String aboutUs;
   late String connectUs;
-  late String howToUse;
+  late String help;
   late String logOut;
   late String partners;
   late String termsOfUse;
   late String myOrders;
   late String myPoints;
-
-
-
-
-
+  late String allProducts;
+  late String productPoints;
+  late String addToCart;
+  late String viewAll;
+  late String displayDevices;
+  late String desktopComputers;
+  late String videoGaming;
+  late String cellularDevices;
+  late String myItems;
+  late String howToUse;
 
   TranslationModel.fromJson(Map<String, dynamic> json) {
     home = json['home'];
@@ -127,17 +131,22 @@ class TranslationModel {
     language = json['language'];
     aboutUs = json['aboutUs'];
     connectUs = json['connectUs'];
-    howToUse = json['howToUse'];
+    help = json['help'];
     logOut = json['logOut'];
     partners = json['partners'];
     termsOfUse = json['termsOfUse'];
     myPoints = json['myPoints'];
     myOrders = json['myOrders'];
-
-
-
-
-
+    allProducts = json['allProduct'];
+    addToCart = json['addToCart'];
+    productPoints = json['productPoints'];
+    viewAll = json['viewAll'];
+    displayDevices = json['displayDevices'];
+    desktopComputers = json['desktopComputers'];
+    videoGaming = json['videoGaming'];
+    cellularDevices = json['cellularDevices'];
+    myItems = json['myItems'];
+    howToUse = json['howToUse'];
   }
 
   Map toJson() => {
@@ -198,17 +207,21 @@ class TranslationModel {
         'language': language,
         'aboutUs': aboutUs,
         'connectUs': connectUs,
-        'help': howToUse,
+        'help': help,
+        'howToUse': howToUse,
         'logOut': logOut,
         'partners': partners,
         'termsOfUse': termsOfUse,
         'myPoints': myPoints,
         'myOrders': myOrders,
-
-
-
-
-
-
+        'allProduct': allProducts,
+        'addToCart': addToCart,
+        'productPoints': productPoints,
+        'viewAll': viewAll,
+        'displayDevices': displayDevices,
+        'desktopComputers': desktopComputers,
+        'videoGaming': videoGaming,
+        'cellularDevices': cellularDevices,
+        'myItems': myItems,
   };
 }
