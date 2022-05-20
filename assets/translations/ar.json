@@ -1,7 +1,7 @@
 {
   "home": "الرئيسية",
   "cart": "السلة",
-  "categories": "العناصر-الأغراض",
+  "categories": "الأقسام",
   "settings": "الإعدادات",
   "logoutConfirmation": "هل أنت متأكد من تسجيل الخروج؟",
   "profile": "الملف الشخصي",
@@ -55,14 +55,21 @@
   "language": "اللغة",
   "aboutUs": "معلومات عنا",
   "connectUs": "تواصل معنا",
-  "howToUse": "كيف تستخدم التطبيق",
+  "help": "مساعدة",
+  "howToUse": "كيف تستخدم",
   "logOut": "تسجيل الخروج",
   "partners": "الشركاء",
   "newValley": "الوادي الجديد",
   "termsOfUse": "الشروط والأحكام",
   "myOrders": "طلباتي",
-  "myPoints": "نقاطي"
-
-
-
+  "myPoints": "نقاطي",
+  "allProduct": "كل المنتجات",
+  "productPoints": "نقاط",
+  "addToCart": "أضف إلى السلة",
+  "viewAll": "مشاهدة الكل",
+  "displayDevices": "أجهزة العرض",
+  "desktopComputers": "أجهزة الكمبيوتر",
+  "videoGaming": "ألعاب الفيديو",
+  "cellularDevices": "ألأجهزة الخلوية",
+  "myItems": "منتجاتي"
 }

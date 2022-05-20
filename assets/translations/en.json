@@ -1,7 +1,7 @@
 {
   "home": "Home",
   "cart": "Cart",
-  "categories": "Items",
+  "categories": "Categories",
   "settings": "Settings",
   "logoutConfirmation": "Are you sure you want to logout?",
   "profile": "Profile",
@@ -55,12 +55,21 @@
   "lightMode": "Light Mode",
   "language": "Language",
   "aboutUs": "About Us",
-  "connectUs": "Connect Us",
+  "connectUs": "Contact Us",
+  "help": "Help",
   "howToUse": "How To Use",
   "partners": "Partners",
   "logOut": "Log Out",
   "termsOfUse": "Terms $ Conditions",
   "myOrders": "My Orders",
-  "myPoints": "My Points"
-
+  "myPoints": "My Points",
+  "allProduct": "All Products",
+  "productPoints": "Points",
+  "addToCart": "Add To Cart",
+  "viewAll": "View All",
+  "displayDevices": "Display Devices",
+  "desktopComputers": "Desktop Computers",
+  "videoGaming": "Video Gaming",
+  "cellularDevices": "Cellular Devices",
+  "myItems": "My Products"
 }

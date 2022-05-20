@@ -31,6 +31,7 @@ class BackScaffold extends StatelessWidget {
               centerTitle: true,
               elevation: elevation,
             ),
+
             body: body,
           ),
         );

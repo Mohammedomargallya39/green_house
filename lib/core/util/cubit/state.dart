@@ -63,5 +63,7 @@ class UserLogoutError extends AppState {
   });
 }
 
+class ChangeSlider extends AppState {}
 
+class ChangeCustomTileExpanded extends AppState {}
 
