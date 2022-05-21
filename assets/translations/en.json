@@ -64,12 +64,19 @@
   "myOrders": "My Orders",
   "myPoints": "My Points",
   "allProduct": "All Products",
-  "productPoints": "Points",
+  "productPoints": "Product Points",
   "addToCart": "Add To Cart",
   "viewAll": "View All",
   "displayDevices": "Display Devices",
   "desktopComputers": "Desktop Computers",
   "videoGaming": "Video Gaming",
   "cellularDevices": "Cellular Devices",
-  "myItems": "My Products"
+  "myItems": "My Products",
+  "orderNumber": "Order Number",
+  "orderStatus": "Order Status",
+  "orderDate": "Order Date",
+  "orderPoints": "Order Points",
+  "quantity": "َQuantity",
+  "totalPoint": "Total Points"
+
 }

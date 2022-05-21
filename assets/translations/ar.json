@@ -64,12 +64,18 @@
   "myOrders": "طلباتي",
   "myPoints": "نقاطي",
   "allProduct": "كل المنتجات",
-  "productPoints": "نقاط",
+  "productPoints": "نقاط المنتج",
   "addToCart": "أضف إلى السلة",
   "viewAll": "مشاهدة الكل",
   "displayDevices": "أجهزة العرض",
   "desktopComputers": "أجهزة الكمبيوتر",
   "videoGaming": "ألعاب الفيديو",
   "cellularDevices": "ألأجهزة الخلوية",
-  "myItems": "منتجاتي"
+  "myItems": "منتجاتي",
+  "orderNumber": "رقم الطلب",
+  "orderStatus": "حالة الطلب",
+  "orderDate": "تاريخ الطلب",
+  "orderPoints": "نقاط الطلب",
+  "quantity": "حالة الطلب",
+  "totalPoint": "نقاط الطلب"
 }

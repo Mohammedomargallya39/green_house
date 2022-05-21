@@ -130,7 +130,10 @@ class ProductDetailsWidget extends StatelessWidget {
                           children: [
                             Expanded(
                               child: IconButton(
-                                  onPressed: (){},
+                                  onPressed: ()
+                                  {
+                                    AppCubit.get(context).counterPlus();
+                                  },
                                   icon: const Icon(
                                       Icons.add,
                                       color: mainColorRGB,
@@ -140,7 +143,7 @@ class ProductDetailsWidget extends StatelessWidget {
                             Expanded(
                                 child: Center(
                                   child: Text(
-                                      1.toString(),
+                                    AppCubit.get(context).numOfProducts.toString(),
                                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
                                         fontWeight: FontWeight.w500,
                                         color: mainColorRGB,
@@ -150,7 +153,10 @@ class ProductDetailsWidget extends StatelessWidget {
                             ),
                             Expanded(
                               child: IconButton(
-                                onPressed: (){},
+                                onPressed: ()
+                                {
+                                  AppCubit.get(context).counterMin();
+                                },
                                 icon: const Icon(
                                   Icons.remove,
                                   color: mainColorRGB,

@@ -8,7 +8,9 @@ import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/cubit/state.dart';
 import '../../../../core/util/widgets/logo.dart';
 import '../../../../core/util/widgets/two_options_dialog.dart';
+import '../../../orders/presentation/pages/orders_page.dart';
 import '../pages/help_page.dart';
+import '../pages/partners_page.dart';
 import 'choose_between_two_options.dart';
 
 class SettingsWidget extends StatelessWidget {
@@ -74,7 +76,60 @@ class SettingsWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      space10Horizontal(context),
+                      const Spacer(),
+                      Container(
+                        width: responsiveValue(
+                          context,
+                          120.0,
+                        ),
+                        height: responsiveValue(
+                          context,
+                          40.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: HexColor(greenColor).withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(
+                            responsiveValue(
+                              context,
+                              4.0,
+                            ),
+                          ),
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.point_of_sale,
+                                size: 22,
+                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                              ),
+                              space5Horizontal(context),
+                              Text(
+                                appTranslation(context).myPoints,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.caption!.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                                ),
+                              ),
+                              space10Horizontal(context),
+                              Text(
+                                '444',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.caption!.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   space16Vertical(context),
@@ -84,46 +139,30 @@ class SettingsWidget extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.list_alt_outlined,
-                              size: 22,
-                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                            ),
-                            space3Vertical(context),
-                            Text(
-                              appTranslation(context).myOrders,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.caption!.copyWith(
-                                  fontWeight: FontWeight.w700
+                        child: InkWell(
+                          onTap: ()
+                          {
+                            navigateTo(context, const OrderPage());
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.list_alt_outlined,
+                                size: 22,
+                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      space10Horizontal(context),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.point_of_sale_outlined,
-                              size: 22,
-                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                            ),
-                            space3Horizontal(context),
-                            Text(
-                              appTranslation(context).myPoints,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.caption!.copyWith(
-                                  fontWeight: FontWeight.w700
+                              space3Vertical(context),
+                              Text(
+                                appTranslation(context).myOrders,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.caption!.copyWith(
+                                    fontWeight: FontWeight.w700
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       space10Horizontal(context),
@@ -323,7 +362,7 @@ class SettingsWidget extends StatelessWidget {
                     icon: Icons.apartment_outlined,
                     function: ()
                     {
-
+                        navigateTo(context, const PartnersPage());
                     },
                   ),
                   SettingsItem(

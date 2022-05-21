@@ -370,5 +370,31 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeCustomTileExpanded());
   }
 
+  int ? numOfProducts = 1;
+  void counterPlus() {
+    numOfProducts = numOfProducts! + 1;
+    emit(NumPlus());
+  }
+  void counterMin() {
+    numOfProducts = numOfProducts! - 1;
+    if (numOfProducts! < 1) {
+      numOfProducts = 1;
+    }
+    emit(NumMin());
+  }
+
+  int ? numOfProductsInCart = 1;
+  int ? productPoints = 55;
+  void counterPlusInCart() {
+    numOfProductsInCart = numOfProductsInCart! + 1;
+    emit(NumPlusInCart());
+  }
+  void counterMinInCart() {
+    numOfProductsInCart = numOfProductsInCart! - 1;
+    if (numOfProductsInCart! < 1) {
+      numOfProductsInCart = 1;
+    }
+    emit(NumMinInCart());
+  }
 
 }
