@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:green_house/features/product_details/presentaion/pages/product_details_page.dart';
+import 'expansion_tile_orders_widget.dart';
 
-import '../../../../core/util/constants.dart';
-import 'expansion_tile_cart_widget.dart';
-
-class CartWidget extends StatelessWidget {
-  const CartWidget({Key? key}) : super(key: key);
+class OrderWidget extends StatelessWidget {
+  const OrderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class CartWidget extends StatelessWidget {
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => const ExpansionTileCartWidget(
+              itemBuilder: (context, index) => const ExpansionTileOrderWidget(
                 expansionTileTitle: 'Nvidia RTX 2080 Ti (8GB)',
               ),
               itemCount: 15,

@@ -67,3 +67,13 @@ class ChangeSlider extends AppState {}
 
 class ChangeCustomTileExpanded extends AppState {}
 
+class NumPlus extends AppState {}
+
+class NumMin extends AppState {}
+
+class NumPlusInCart extends AppState {}
+
+class NumMinInCart extends AppState {}
+
+
+
