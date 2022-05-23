@@ -5,7 +5,7 @@ import 'package:green_house/core/network/remote/api_endpoints.dart';
 import 'package:green_house/core/network/remote/dio_helper.dart';
 import '../error/exceptions.dart';
 import '../models/login_model.dart';
-import '../models/logout_model.dart';
+import '../models/register_model.dart';
 import 'local/cache_helper.dart';
 
 abstract class Repository {
@@ -14,7 +14,17 @@ abstract class Repository {
     required String password,
   });
 
-  Future<Either<String, LogOutModel>> logout();
+  // Future<Either<String, LogOutModel>> logout();
+
+  Future<Either<String, RegisterModel>> register({
+    required String name,
+    required String email,
+    required String address,
+    required String mobile,
+    required String password,
+    required String confirmPassword,
+    //required String city,
+  });
 
 }
 
@@ -60,16 +70,35 @@ class RepoImplementation extends Repository {
 
 
   @override
-  Future<Either<String, LogOutModel>> logout() async {
-    return _basicErrorHandling<LogOutModel>(
+  Future<Either<String, RegisterModel>> register(
+      {
+        required String name,
+        required String email,
+        required String address,
+        required String mobile,
+        required String password,
+        required String confirmPassword,
+        //required String city,
+
+      }
+      ) async
+  { return _basicErrorHandling<RegisterModel>(
       onSuccess: () async
       {
         final Response f = await dioHelper.post(
-            url: logoutUrl,
-            token: token,
+            url: registerUrl,
+            data: {
+              'name': name,
+              'email': email,
+              'password': password,
+              'c_password': confirmPassword,
+              'mobile': mobile,
+              'address': address,
+              //'city': city,
+            }
         );
 
-        return LogOutModel.fromJson(f.data);
+        return RegisterModel.fromJson(f.data);
       },
       onServerError: (exception) async
       {
@@ -81,6 +110,30 @@ class RepoImplementation extends Repository {
   // TODO: implement login
   throw UnimplementedError();
   }
+
+
+  // @override
+  // Future<Either<String, LogOutModel>> logout() async {
+  //   return _basicErrorHandling<LogOutModel>(
+  //     onSuccess: () async
+  //     {
+  //       final Response f = await dioHelper.post(
+  //           url: logoutUrl,
+  //           token: token,
+  //       );
+  //
+  //       return LogOutModel.fromJson(f.data);
+  //     },
+  //     onServerError: (exception) async
+  //     {
+  //       debugPrint(exception.message);
+  //       return exception.message;
+  //     }
+  // );
+  //
+  // // TODO: implement login
+  // throw UnimplementedError();
+  // }
 }
 
 

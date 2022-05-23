@@ -45,23 +45,41 @@ class UserLoginError extends AppState {
   });
 }
 
-class UserLogoutLoading extends AppState {}
+class UserRegisterLoading extends AppState {}
 
-class UserLogoutSuccess extends AppState {
+class UserRegisterSuccess extends AppState {
+  final String token;
+
+  UserRegisterSuccess({
+    required this.token,
+  });
+}
+
+class UserRegisterError extends AppState {
   final String message;
 
-  UserLogoutSuccess({
+  UserRegisterError({
     required this.message,
   });
 }
 
-class UserLogoutError extends AppState {
-  final String message;
-
-  UserLogoutError({
-    required this.message,
-  });
-}
+// class UserLogoutLoading extends AppState {}
+//
+// class UserLogoutSuccess extends AppState {
+//   final String message;
+//
+//   UserLogoutSuccess({
+//     required this.message,
+//   });
+// }
+//
+// class UserLogoutError extends AppState {
+//   final String message;
+//
+//   UserLogoutError({
+//     required this.message,
+//   });
+// }
 
 class ChangeSlider extends AppState {}
 
