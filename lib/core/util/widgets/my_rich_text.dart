@@ -24,7 +24,14 @@ class MyRichText extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
-                      .copyWith(fontWeight: FontWeight.w700),
+                      .copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: responsiveValue(
+                        context,
+                        15.0,
+                      ),
+                  ),
+
                 ),
                 MyTextButton(
                   title: textButton,
@@ -32,7 +39,10 @@ class MyRichText extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: HexColor(mainColor),
                     fontWeight: FontWeight.w700,
-                    fontSize: 13,
+                    fontSize: responsiveValue(
+                      context,
+                      15.0,
+                    ),
                   ),
                 ),
               ],

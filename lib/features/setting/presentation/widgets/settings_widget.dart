@@ -76,57 +76,59 @@ class SettingsWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Spacer(),
-                      Container(
-                        width: responsiveValue(
-                          context,
-                          120.0,
-                        ),
-                        height: responsiveValue(
-                          context,
-                          40.0,
-                        ),
-                        decoration: BoxDecoration(
-                          color: HexColor(greenColor).withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(
-                            responsiveValue(
-                              context,
-                              4.0,
+                     // const Spacer(),
+                      Expanded(
+                        child: Container(
+                          // width: responsiveValue(
+                          //   context,
+                          //   120.0,
+                          // ),
+                          height: responsiveValue(
+                            context,
+                            50.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: HexColor(greenColor).withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(
+                              responsiveValue(
+                                context,
+                                4.0,
+                              ),
                             ),
                           ),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.point_of_sale,
-                                size: 22,
-                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                              ),
-                              space5Horizontal(context),
-                              Text(
-                                appTranslation(context).myPoints,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.caption!.copyWith(
-                                  fontWeight: FontWeight.w700,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.point_of_sale,
+                                  size: 22,
                                   color: AppCubit.get(context).isDark ? whiteColor : blackColor,
                                 ),
-                              ),
-                              space10Horizontal(context),
-                              Text(
-                                '444',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.caption!.copyWith(
-                                    fontWeight: FontWeight.w500,
+                                space5Horizontal(context),
+                                Text(
+                                  appTranslation(context).myPoints,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.caption!.copyWith(
+                                    fontWeight: FontWeight.w700,
                                     color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-
+                                  ),
                                 ),
-                              ),
-                            ],
+                                space10Horizontal(context),
+                                Text(
+                                  '444',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.caption!.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -273,80 +275,14 @@ class SettingsWidget extends StatelessWidget {
                                         }
                                       },
                           ),
-                          // Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     mainAxisSize: MainAxisSize.min,
-                          //     children:
-                          //     [
-                          //       Padding(
-                          //         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          //         child: InkWell(
-                          //           onTap: ()
-                          //           {
-                          //             if (AppCubit.get(context).isRtl == false) {
-                          //               Navigator.pop(context);
-                          //             }
-                          //             if (AppCubit.get(context).isRtl == true) {
-                          //               AppCubit.get(context).changeLanguage(value: false);
-                          //               Navigator.pop(context);
-                          //             }
-                          //
-                          //           },
-                          //           child: Row(
-                          //             children: [
-                          //               Text(
-                          //                 '(En)',
-                          //                 style: Theme.of(context).textTheme.bodyText2,
-                          //               ),
-                          //               space10Horizontal(context),
-                          //               Expanded(
-                          //                 child: Text(
-                          //                   appTranslation(context).english,
-                          //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          //                     fontWeight: FontWeight.w400,
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         ),
-                          //       ),
-                          //       const MyDivider(),
-                          //       Padding(
-                          //         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          //         child: InkWell(
-                          //           onTap: ()
-                          //           {
-                          //             if (AppCubit.get(context).isRtl == true) {
-                          //               Navigator.pop(context);
-                          //             }
-                          //             if (AppCubit.get(context).isRtl == false) {
-                          //               AppCubit.get(context).changeLanguage(value: true);
-                          //               Navigator.pop(context);
-                          //             }
-                          //           },
-                          //           child: Row(
-                          //             children: [
-                          //               Text(
-                          //                 '(Ar)',
-                          //                 style: Theme.of(context).textTheme.bodyText2,
-                          //               ),
-                          //               space10Horizontal(context),
-                          //               Expanded(
-                          //                 child: Text(
-                          //                   appTranslation(context).arabic,
-                          //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          //                     fontWeight: FontWeight.w400,
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ],
-                          // ),
                       );
+                    },
+                  ),
+                  SettingsItem(
+                    title: appTranslation(context).profile,
+                    icon: Icons.person,
+                    function: ()
+                    {
                     },
                   ),
                   SettingsItem(
@@ -383,7 +319,7 @@ class SettingsWidget extends StatelessWidget {
                                   msg: 'logout success',
                                 );
                                 signOut(context);
-                                AppCubit.get(context).logOut();
+                                //AppCubit.get(context).logOut();
                               },
                               popButtonVoidCallback: (){
                                 Navigator.pop(context);

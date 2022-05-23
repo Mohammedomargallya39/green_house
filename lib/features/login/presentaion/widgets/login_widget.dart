@@ -13,6 +13,7 @@ import '../../../../core/util/widgets/my_form.dart';
 import '../../../../core/util/widgets/my_rich_text.dart';
 import '../../../main/pages/main_page.dart';
 import '../../../register/presentaion/pages/register_page.dart';
+import '../../../setting/presentation/widgets/choose_between_two_options.dart';
 
 class LoginWidget extends StatelessWidget {
   LoginWidget({Key? key}) : super(key: key);
@@ -40,13 +41,136 @@ class LoginWidget extends StatelessWidget {
       },
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: responsiveValue(
+              context,
+              12.0,
+            ),
+            vertical: responsiveValue(
+              context,
+              18.0,
+            ),
+          ),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 flex: 1,
-                child: Center(
-                  child: AppLogo(),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    IconButton(
+                        onPressed: ()
+                        {
+                          myBottomSheet(
+                            context: context,
+                            widget: ChooseYourOption(
+                              titleFirstOption: Icons.abc_sharp,
+                              fullTitleFirstOption: appTranslation(context).english,
+                              secondTitleOption: Icons.language_outlined,
+                              fullSecondTitleOption: appTranslation(context).arabic,
+                              onTapFirstOption: ()
+                              {
+                                if (AppCubit.get(context).isRtl == false) {
+                                  Navigator.pop(context);
+                                }
+                                if (AppCubit.get(context).isRtl == true) {
+                                  AppCubit.get(context).changeLanguage(value: false);
+                                  Navigator.pop(context);
+                                }
+
+                              },
+                              onTapSecondOption: ()
+                              {
+                                if (AppCubit.get(context).isRtl == true) {
+                                  Navigator.pop(context);
+                                }
+                                if (AppCubit.get(context).isRtl == false) {
+                                  AppCubit.get(context).changeLanguage(value: true);
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ),
+                            // Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     mainAxisSize: MainAxisSize.min,
+                            //     children:
+                            //     [
+                            //       Padding(
+                            //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            //         child: InkWell(
+                            //           onTap: ()
+                            //           {
+                            //             if (AppCubit.get(context).isRtl == false) {
+                            //               Navigator.pop(context);
+                            //             }
+                            //             if (AppCubit.get(context).isRtl == true) {
+                            //               AppCubit.get(context).changeLanguage(value: false);
+                            //               Navigator.pop(context);
+                            //             }
+                            //
+                            //           },
+                            //           child: Row(
+                            //             children: [
+                            //               Text(
+                            //                 '(En)',
+                            //                 style: Theme.of(context).textTheme.bodyText2,
+                            //               ),
+                            //               space10Horizontal(context),
+                            //               Expanded(
+                            //                 child: Text(
+                            //                   appTranslation(context).english,
+                            //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            //                     fontWeight: FontWeight.w400,
+                            //                   ),
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       const MyDivider(),
+                            //       Padding(
+                            //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            //         child: InkWell(
+                            //           onTap: ()
+                            //           {
+                            //             if (AppCubit.get(context).isRtl == true) {
+                            //               Navigator.pop(context);
+                            //             }
+                            //             if (AppCubit.get(context).isRtl == false) {
+                            //               AppCubit.get(context).changeLanguage(value: true);
+                            //               Navigator.pop(context);
+                            //             }
+                            //           },
+                            //           child: Row(
+                            //             children: [
+                            //               Text(
+                            //                 '(Ar)',
+                            //                 style: Theme.of(context).textTheme.bodyText2,
+                            //               ),
+                            //               space10Horizontal(context),
+                            //               Expanded(
+                            //                 child: Text(
+                            //                   appTranslation(context).arabic,
+                            //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            //                     fontWeight: FontWeight.w400,
+                            //                   ),
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            // ),
+                          );
+                        },
+                        icon: const Icon(Icons.language_outlined,)
+                    ),
+                    const Center(
+                      child: AppLogo(),
+                    )
+                  ],
                 ),
               ),
               Expanded(

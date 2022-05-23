@@ -8,6 +8,7 @@ import '../../../../core/util/widgets/logo.dart';
 import '../../../../core/util/widgets/my_button.dart';
 import '../../../../core/util/widgets/my_drop_down_button_field.dart';
 import '../../../../core/util/widgets/my_form.dart';
+import '../../../setting/presentation/widgets/choose_between_two_options.dart';
 
 class RegisterWidget extends StatelessWidget {
   RegisterWidget({Key? key}) : super(key: key);
@@ -26,17 +27,136 @@ class RegisterWidget extends StatelessWidget {
     return BlocBuilder<AppCubit,AppState>(
         builder: (context, state) {
           return Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveValue(
+                context,
+                12.0,
+              ),
+            ),
             child: Column(
               children: [
-                const Expanded(
+                 Expanded(
                   flex: 1,
-                  child: Center(
-                    child: AppLogo(),
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      IconButton(
+                          onPressed: ()
+                          {
+                            myBottomSheet(
+                              context: context,
+                              widget: ChooseYourOption(
+                                titleFirstOption: Icons.abc_sharp,
+                                fullTitleFirstOption: appTranslation(context).english,
+                                secondTitleOption: Icons.language_outlined,
+                                fullSecondTitleOption: appTranslation(context).arabic,
+                                onTapFirstOption: ()
+                                {
+                                  if (AppCubit.get(context).isRtl == false) {
+                                    Navigator.pop(context);
+                                  }
+                                  if (AppCubit.get(context).isRtl == true) {
+                                    AppCubit.get(context).changeLanguage(value: false);
+                                    Navigator.pop(context);
+                                  }
+
+                                },
+                                onTapSecondOption: ()
+                                {
+                                  if (AppCubit.get(context).isRtl == true) {
+                                    Navigator.pop(context);
+                                  }
+                                  if (AppCubit.get(context).isRtl == false) {
+                                    AppCubit.get(context).changeLanguage(value: true);
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              ),
+                              // Column(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     mainAxisSize: MainAxisSize.min,
+                              //     children:
+                              //     [
+                              //       Padding(
+                              //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              //         child: InkWell(
+                              //           onTap: ()
+                              //           {
+                              //             if (AppCubit.get(context).isRtl == false) {
+                              //               Navigator.pop(context);
+                              //             }
+                              //             if (AppCubit.get(context).isRtl == true) {
+                              //               AppCubit.get(context).changeLanguage(value: false);
+                              //               Navigator.pop(context);
+                              //             }
+                              //
+                              //           },
+                              //           child: Row(
+                              //             children: [
+                              //               Text(
+                              //                 '(En)',
+                              //                 style: Theme.of(context).textTheme.bodyText2,
+                              //               ),
+                              //               space10Horizontal(context),
+                              //               Expanded(
+                              //                 child: Text(
+                              //                   appTranslation(context).english,
+                              //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              //                     fontWeight: FontWeight.w400,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       const MyDivider(),
+                              //       Padding(
+                              //         padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              //         child: InkWell(
+                              //           onTap: ()
+                              //           {
+                              //             if (AppCubit.get(context).isRtl == true) {
+                              //               Navigator.pop(context);
+                              //             }
+                              //             if (AppCubit.get(context).isRtl == false) {
+                              //               AppCubit.get(context).changeLanguage(value: true);
+                              //               Navigator.pop(context);
+                              //             }
+                              //           },
+                              //           child: Row(
+                              //             children: [
+                              //               Text(
+                              //                 '(Ar)',
+                              //                 style: Theme.of(context).textTheme.bodyText2,
+                              //               ),
+                              //               space10Horizontal(context),
+                              //               Expanded(
+                              //                 child: Text(
+                              //                   appTranslation(context).arabic,
+                              //                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              //                     fontWeight: FontWeight.w400,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ],
+                              // ),
+                            );
+                          },
+                          icon: const Icon(Icons.language_outlined,)
+                      ),
+                      const Center(
+                        child: AppLogo(),
+                      )
+                    ],
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Form(
@@ -44,6 +164,7 @@ class RegisterWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          space10Vertical(context),
                           Center(
                             child: Text(
                               appTranslation(context).createUserAccount,
@@ -63,30 +184,20 @@ class RegisterWidget extends StatelessWidget {
                           ),
                           space10Vertical(context),
                           MyForm(
-                              label: appTranslation(context).phone,
-                              controller: phoneController,
-                              type: TextInputType.phone,
-                              error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).phone}',
-                              isPassword: false
-                          ),
-                          space10Vertical(context),
-                          MyForm(
-                              label: appTranslation(context).address,
-                              controller: addressController,
-                              type: TextInputType.streetAddress,
-                              error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).address}',
-                              isPassword: false
-                          ),
-                          space10Vertical(context),
-                          MyForm(
                               label: appTranslation(context).emailAddress,
                               controller: emailController,
                               type: TextInputType.emailAddress,
                               error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).emailAddress}',
                               isPassword: false
                           ),
-                          // space10Vertical(context),
-                          // const MyDropDownButton(),
+                          space10Vertical(context),
+                          MyForm(
+                              label: appTranslation(context).phone,
+                              controller: phoneController,
+                              type: TextInputType.phone,
+                              error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).phone}',
+                              isPassword: false
+                          ),
                           space10Vertical(context),
                           MyForm(
                               label: appTranslation(context).password,
@@ -103,6 +214,16 @@ class RegisterWidget extends StatelessWidget {
                               error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).confirmPassword}  ${appTranslation(context).right}',
                               isPassword: true
                           ),
+                          space10Vertical(context),
+                          // const MyDropDownButton(),
+                          // space10Vertical(context),
+                          MyForm(
+                              label: appTranslation(context).address,
+                              controller: addressController,
+                              type: TextInputType.streetAddress,
+                              error: '${appTranslation(context).pleaseEnter} ${appTranslation(context).address}',
+                              isPassword: false
+                          ),
                           space40Vertical(context),
                           MyButton(
                             onPressed: ()
@@ -110,15 +231,26 @@ class RegisterWidget extends StatelessWidget {
                               if (formKey.currentState!.validate() && passwordController.text == confirmPasswordController.text)
                               {
                                 debugPrint("Form is valid");
+                                AppCubit.get(context).userRegister(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    confirmPassword: confirmPasswordController.text,
+                                    mobile: phoneController.text,
+                                    address: addressController.text,
+                                    //city: AppCubit.get(context).selectGovernment.titleEn,
+                                    //'${AppCubit.get(context).selectGovernment} ${addressController.text}',
+                                );
                               }
                               else
                               {
                                 debugPrint("Form is invalid");
+                                //debugPrint("${AppCubit.get(context).selectGovernment}");
                               }
                             },
                             text: appTranslation(context).newAccount,
                           ),
-                          space30Vertical(context),
+                          space20Vertical(context),
                         ],
                       ),
                     ),

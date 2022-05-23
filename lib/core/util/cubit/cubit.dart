@@ -8,7 +8,7 @@ import 'package:green_house/core/util/cubit/state.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../di/injection.dart';
 import '../../models/login_model.dart';
-import '../../models/logout_model.dart';
+import '../../models/register_model.dart';
 import '../../models/select_government_model.dart';
 import '../../network/local/cache_helper.dart';
 import '../../network/repository.dart';
@@ -326,32 +326,84 @@ class AppCubit extends Cubit<AppState> {
 
 }
 
-  LogOutModel? logOutModel;
 
-  void logOut() async
+  RegisterModel? registerModel;
+  void userRegister(
   {
-    emit(UserLogoutLoading());
+  required String name,
+  required String email,
+  required String password,
+  required String confirmPassword,
+  required String mobile,
+  required String address,
+  //required String city,
+  }) async
+  {
+    emit(UserRegisterLoading());
 
-    final logOut = await _repository.logout();
+    final register = await _repository.register(
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      mobile: mobile,
+      address: address,
+      name: name,
+      //city: city,
 
-    logOut.fold(
-        (failure)
+    );
+
+    register.fold(
+            (failure)
         {
-          emit(UserLogoutError(
-              message: failure
+          emit(UserLoginError(
+            message: failure,
           )
           );
+          /// error in failure
+          debugPrint(failure.toString());
         },
-        (data)
+            (data)
         {
-          logOutModel = data;
-          emit(UserLogoutSuccess(
-              message: logOutModel!.message,
-          )
-          );
+
+          /// error in data
+
+          registerModel = data;
+          emit(UserLoginSuccess(
+            token: '${registerModel!.data?.accessToken}',
+          ));
+
         }
     );
+
   }
+
+
+  //LogOutModel? logOutModel;
+
+  // void logOut() async
+  // {
+  //   emit(UserLogoutLoading());
+  //
+  //   final logOut = await _repository.logout();
+  //
+  //   logOut.fold(
+  //       (failure)
+  //       {
+  //         emit(UserLogoutError(
+  //             message: failure
+  //         )
+  //         );
+  //       },
+  //       (data)
+  //       {
+  //         logOutModel = data;
+  //         emit(UserLogoutSuccess(
+  //             message: logOutModel!.message,
+  //         )
+  //         );
+  //       }
+  //   );
+  // }
 
   final List<String> images = [
     'assets/images/market.png',

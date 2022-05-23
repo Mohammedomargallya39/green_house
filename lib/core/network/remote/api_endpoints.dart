@@ -1,11 +1,13 @@
-const String baseUrl = 'https://elgomhouria.vps.webdock.io/';
+const String baseUrl = 'https://pro.greenhouse-eg.info/api/';
 
 String? token;
 
 
-const String loginUrl = 'api/login';
+const String loginUrl = 'login';
 
-const String logoutUrl = 'api/logout';
+const String registerUrl = 'register';
+
+//const String logoutUrl = 'api/logout';
 
 
 

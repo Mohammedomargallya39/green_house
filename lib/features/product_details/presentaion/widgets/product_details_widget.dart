@@ -31,10 +31,64 @@ class ProductDetailsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  'assets/images/shopping.png',
-                  height: 280,
-                  width: double.infinity,
+                Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Stack(
+                      alignment: Alignment.topLeft,
+                      children: [
+                        IconButton(
+                          onPressed: ()
+                          {
+
+                          },
+                          icon: Icon(
+                            Icons.shopping_cart,
+                            color: mainColorRGB,
+                            size: responsiveValue(
+                              context,
+                              20,
+                            ),
+                          ),
+                        ),
+                        Container(
+                        width: responsiveValue(
+                              context,
+                              25,
+                            ),
+                        height: responsiveValue(
+                              context,
+                              25,
+                            ),
+                          decoration: BoxDecoration(
+                            color: HexColor(red),
+                            borderRadius: BorderRadius.circular(
+                              responsiveValue(
+                                context,
+                                15.0,
+                              ),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              AppCubit.get(context).numOfProducts.toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.caption?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: whiteColor,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/images/shopping.png',
+                      height: 280,
+                      width: double.infinity,
+                    ),
+                  ],
                 ),
                 bigDivider(context),
                 space20Vertical(context),
@@ -68,45 +122,6 @@ class ProductDetailsWidget extends StatelessWidget {
                 space40Vertical(context),
                 Row(
                   children: [
-                    Stack(
-                      alignment: Alignment.topLeft,
-                      children: [
-                        IconButton(
-                          onPressed: ()
-                          {
-
-                          },
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: mainColorRGB,
-                            size: responsiveValue(
-                              context,
-                              20,
-                            ),
-                          ),
-                        ),
-                        Container(
-
-                          decoration: BoxDecoration(
-                            color: HexColor(red),
-                            borderRadius: BorderRadius.circular(
-                              responsiveValue(
-                                context,
-                                15.0,
-                              ),
-                            ),
-                          ),
-                          child: Text(
-                              '55',
-                            style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: whiteColor,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    space8Horizontal(context),
                     Expanded(
                       flex: 2,
                       child: MyButton(
@@ -126,48 +141,49 @@ class ProductDetailsWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: IconButton(
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: IconButton(
+                                    onPressed: ()
+                                    {
+                                      AppCubit.get(context).counterPlus();
+                                    },
+                                    icon: const Icon(
+                                        Icons.add,
+                                        color: mainColorRGB,
+                                    ),
+                                ),
+                              ),
+                              Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      AppCubit.get(context).numOfProducts.toString(),
+                                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          color: mainColorRGB,
+                                        ),
+                                    ),
+                                  ),
+                              ),
+                              Expanded(
+                                child: IconButton(
                                   onPressed: ()
                                   {
-                                    AppCubit.get(context).counterPlus();
+                                    AppCubit.get(context).counterMin();
                                   },
                                   icon: const Icon(
-                                      Icons.add,
-                                      color: mainColorRGB,
-                                  ),
-                              ),
-                            ),
-                            Expanded(
-                                child: Center(
-                                  child: Text(
-                                    AppCubit.get(context).numOfProducts.toString(),
-                                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                                        fontWeight: FontWeight.w500,
-                                        color: mainColorRGB,
-                                      ),
+                                    Icons.remove,
+                                    color: mainColorRGB,
                                   ),
                                 ),
-                            ),
-                            Expanded(
-                              child: IconButton(
-                                onPressed: ()
-                                {
-                                  AppCubit.get(context).counterMin();
-                                },
-                                icon: const Icon(
-                                  Icons.remove,
-                                  color: mainColorRGB,
-                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ],
