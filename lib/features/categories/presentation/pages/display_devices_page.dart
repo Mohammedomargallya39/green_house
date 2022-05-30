@@ -12,9 +12,7 @@ class DisplayDevicesCategoryPage extends StatelessWidget {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Products(
-          image: 'assets/images/shopping.png',
           product: appTranslation(context).displayDevices,
-          name: 'MSI Nvidia GTX 1660 Ti',
     ),
         )
     );

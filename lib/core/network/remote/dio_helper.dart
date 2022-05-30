@@ -147,11 +147,11 @@ extension on DioHelper {
   Future request(Future<Response> Function() request) async {
     try {
       final r = await request.call();
-      print("Response => ${r.data}");
+      debugPrintFullText("Response => ${r.data}");
 
       return r;
     } on DioError catch (e) {
-      print("Error => ${e.response!.data['message']}");
+      debugPrintFullText("Error => ${e.response!.data['message']}");
 
       throw ServerException(
         message: e.response!.data['message'],

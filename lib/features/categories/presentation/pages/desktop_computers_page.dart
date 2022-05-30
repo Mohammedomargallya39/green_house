@@ -13,9 +13,7 @@ class DeskTopComputersCategoryPage extends StatelessWidget {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Products(
-            image: 'assets/images/sell.png',
             product: appTranslation(context).desktopComputers,
-            name: 'Laptop Asus',
           ),
         )
     );

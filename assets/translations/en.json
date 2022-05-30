@@ -77,6 +77,12 @@
   "orderDate": "Order Date",
   "orderPoints": "Order Points",
   "quantity": "َQuantity",
-  "totalPoint": "Total Points"
+  "totalPoint": "Total Points",
+  "productName": "Product Name",
+  "productCategory": "Product Category",
+  "productDescription": "Product Description",
+  "productVideoUrl": "Product Video Url",
+  "notAvailable": "Not Available"
+
 
 }

@@ -78,6 +78,12 @@ class TranslationModel {
   late String orderPoints;
   late String quantity;
   late String totalPoint;
+  late String productName;
+  late String productCategory;
+  late String productDescription;
+  late String productVideoUrl;
+  late String notAvailable;
+
 
   TranslationModel.fromJson(Map<String, dynamic> json) {
     home = json['home'];
@@ -159,6 +165,11 @@ class TranslationModel {
     orderPoints = json['orderPoints'];
     quantity = json['quantity'];
     totalPoint = json['totalPoint'];
+    productName = json['productName'];
+    productCategory = json['productCategory'];
+    productDescription = json['productDescription'];
+    productVideoUrl = json['productVideoUrl'];
+    notAvailable = json['notAvailable'];
   }
 
   Map toJson() => {
@@ -240,6 +251,11 @@ class TranslationModel {
         'orderStatus': orderStatus,
         'orderPoints': orderPoints,
         'quantity': quantity,
-        'totalPoint': totalPoint
+        'totalPoint': totalPoint,
+        'productName': productName,
+        'productCategory': productCategory,
+        'productDescription': productDescription,
+        'productVideoUrl': productVideoUrl,
+        'notAvailable': notAvailable,
   };
 }

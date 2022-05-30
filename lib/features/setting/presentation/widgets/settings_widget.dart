@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:green_house/features/setting/presentation/pages/add_product_page.dart';
 import 'package:green_house/features/setting/presentation/widgets/setting_item.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
@@ -138,62 +139,68 @@ class SettingsWidget extends StatelessWidget {
                   bigDivider(context),
                   space16Vertical(context),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: ()
-                          {
-                            navigateTo(context, const OrderPage());
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.list_alt_outlined,
-                                size: 22,
-                                color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                              ),
-                              space3Vertical(context),
-                              Text(
-                                appTranslation(context).myOrders,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.caption!.copyWith(
-                                    fontWeight: FontWeight.w700
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      space10Horizontal(context),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.sell_outlined,
-                              size: 22,
-                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                            ),
-                            space3Horizontal(context),
-                            Text(
-                              appTranslation(context).myItems,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.caption!.copyWith(
-                                  fontWeight: FontWeight.w700
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    ],
-                  ),
-                  space10Vertical(context),
-                  bigDivider(context),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: InkWell(
+                  //         onTap: ()
+                  //         {
+                  //           navigateTo(context, const OrderPage());
+                  //         },
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             Icon(
+                  //               Icons.list_alt_outlined,
+                  //               size: 22,
+                  //               color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                  //             ),
+                  //             space3Vertical(context),
+                  //             Text(
+                  //               appTranslation(context).myOrders,
+                  //               maxLines: 1,
+                  //               overflow: TextOverflow.ellipsis,
+                  //               style: Theme.of(context).textTheme.caption!.copyWith(
+                  //                   fontWeight: FontWeight.w700
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     // space10Horizontal(context),
+                  //     // Expanded(
+                  //     //   child: InkWell(
+                  //     //     onTap: ()
+                  //     //     {
+                  //     //       navigateTo(context, const AddProductPage());
+                  //     //     },
+                  //     //     child: Column(
+                  //     //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //     //       children: [
+                  //     //         Icon(
+                  //     //           Icons.sell_outlined,
+                  //     //           size: 22,
+                  //     //           color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                  //     //         ),
+                  //     //         space3Horizontal(context),
+                  //     //         Text(
+                  //     //           appTranslation(context).myItems,
+                  //     //           maxLines: 1,
+                  //     //           overflow: TextOverflow.ellipsis,
+                  //     //           style: Theme.of(context).textTheme.caption!.copyWith(
+                  //     //               fontWeight: FontWeight.w700
+                  //     //           ),
+                  //     //         ),
+                  //     //       ],
+                  //     //     ),
+                  //     //   ),
+                  //     // ),
+                  //
+                  //   ],
+                  // ),
+                  // space10Vertical(context),
+                  // bigDivider(context),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: responsiveValue(
@@ -278,11 +285,19 @@ class SettingsWidget extends StatelessWidget {
                       );
                     },
                   ),
+                  // SettingsItem(
+                  //   title: appTranslation(context).profile,
+                  //   icon: Icons.person,
+                  //   function: ()
+                  //   {
+                  //   },
+                  // ),
                   SettingsItem(
-                    title: appTranslation(context).profile,
-                    icon: Icons.person,
+                    title: appTranslation(context).myOrders,
+                    icon: Icons.list_alt_outlined,
                     function: ()
                     {
+                      navigateTo(context, const OrderPage());
                     },
                   ),
                   SettingsItem(

@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
               rtl: isRtl,
             )..setTranslation(
               translation: translation,
-            ),
+            )..getItems(),
         ),
       ],
       child: BlocBuilder<AppCubit, AppState>(
