@@ -93,5 +93,29 @@ class NumPlusInCart extends AppState {}
 
 class NumMinInCart extends AppState {}
 
+class SelectCameraImageSate extends AppState {}
+
+class SelectGalleryImageState extends AppState {}
+
+
+class UserItemsLoading extends AppState {}
+
+class UserItemsSuccess extends AppState {
+  final String token;
+
+  UserItemsSuccess({
+    required this.token,
+  });
+}
+
+class UserItemsError extends AppState {
+  final String message;
+
+  UserItemsError({
+    required this.message,
+  });
+}
+
+
 
 

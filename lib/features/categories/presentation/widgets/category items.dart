@@ -69,7 +69,7 @@ class CategoryItems extends StatelessWidget {
               itemBuilder: (context, index) => InkWell(
                 onTap: ()
                 {
-                  navigateTo(context, ProductDetailsPage());
+                  // navigateTo(context, ProductDetailsPage());
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(

@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_house/core/models/item_model.dart';
 import 'package:green_house/core/util/cubit/state.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../di/injection.dart';
 import '../../models/login_model.dart';
 import '../../models/register_model.dart';
@@ -378,33 +379,6 @@ class AppCubit extends Cubit<AppState> {
   }
 
 
-  //LogOutModel? logOutModel;
-
-  // void logOut() async
-  // {
-  //   emit(UserLogoutLoading());
-  //
-  //   final logOut = await _repository.logout();
-  //
-  //   logOut.fold(
-  //       (failure)
-  //       {
-  //         emit(UserLogoutError(
-  //             message: failure
-  //         )
-  //         );
-  //       },
-  //       (data)
-  //       {
-  //         logOutModel = data;
-  //         emit(UserLogoutSuccess(
-  //             message: logOutModel!.message,
-  //         )
-  //         );
-  //       }
-  //   );
-  // }
-
   final List<String> images = [
     'assets/images/market.png',
     'assets/images/sell.png',
@@ -448,5 +422,57 @@ class AppCubit extends Cubit<AppState> {
     }
     emit(NumMinInCart());
   }
+
+  // final ImagePicker cameraProduct = ImagePicker();
+  // File? cameraProductImage;
+  // void selectCameraImage() async
+  // {
+  //   cameraProduct.pickImage(source: ImageSource.camera).then((value)
+  //   {
+  //     cameraProductImage = File(value!.path);
+  //     emit(SelectCameraImageSate());
+  //   });
+  // }
+
+  final ImagePicker galleryProduct = ImagePicker();
+  File? galleryProductImage;
+  void selectGalleryImage() async
+  {
+    galleryProduct.pickImage(source: ImageSource.gallery).then((value)
+    {
+      galleryProductImage = File(value!.path);
+      emit(SelectGalleryImageState());
+    });
+  }
+
+
+  ItemModel? itemModel;
+  void getItems() async
+  {
+    emit(UserItemsLoading());
+
+    final items = await _repository.getItems();
+
+    items.fold(
+            (failure)
+        {
+          emit(UserItemsError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          itemModel = data;
+          emit(UserItemsSuccess(
+            token: '${registerModel!.data?.accessToken}',
+          ));
+
+        }
+    );
+
+  }
+
 
 }

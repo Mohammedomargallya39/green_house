@@ -9,6 +9,7 @@ class PartnersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackScaffold(
         body: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => const PartnersWidget(),
             itemCount: 55,
         ),

@@ -54,9 +54,11 @@ dependencies:
   file_picker: ^4.2.4
   cached_network_image: ^3.2.0
   fluttertoast: ^8.0.8
-  flutter_conditional_rendering: ^2.0.0
+  conditional_builder_null_safety: ^0.0.6
   flutter_icons: ^1.1.0
   url_launcher: ^6.0.0
+  image_picker: ^0.8.5+3
+
 
 
 dev_dependencies:

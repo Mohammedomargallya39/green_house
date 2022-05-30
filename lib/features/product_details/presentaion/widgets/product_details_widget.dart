@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_house/core/util/constants.dart';
 import 'package:green_house/core/util/cubit/state.dart';
 import 'package:green_house/core/util/widgets/my_button.dart';
-import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/cubit/cubit.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
-  const ProductDetailsWidget({Key? key}) : super(key: key);
+  const ProductDetailsWidget({Key? key , required this.productIndex}) : super(key: key);
+  final int productIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -31,160 +31,135 @@ class ProductDetailsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    Stack(
-                      alignment: Alignment.topLeft,
-                      children: [
-                        IconButton(
-                          onPressed: ()
-                          {
-
-                          },
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: mainColorRGB,
-                            size: responsiveValue(
-                              context,
-                              20,
-                            ),
-                          ),
-                        ),
-                        Container(
-                        width: responsiveValue(
-                              context,
-                              25,
-                            ),
-                        height: responsiveValue(
-                              context,
-                              25,
-                            ),
-                          decoration: BoxDecoration(
-                            color: HexColor(red),
-                            borderRadius: BorderRadius.circular(
-                              responsiveValue(
-                                context,
-                                15.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              AppCubit.get(context).numOfProducts.toString(),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.caption?.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: whiteColor,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Image.asset(
-                      'assets/images/shopping.png',
-                      height: 280,
-                      width: double.infinity,
-                    ),
-                  ],
+                Image.network(
+                  AppCubit.get(context).itemModel!.data![productIndex].image!,
+                  height: 280,
+                  width: double.infinity,
                 ),
                 bigDivider(context),
                 space20Vertical(context),
                 Row(
                   children: [
-                    Text(
-                      'Data',
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                    Expanded(
+                      
+                      child: Text(
+                        '${appTranslation(context).productName}: ',
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      '550 ${appTranslation(context).productPoints}',
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                    Expanded(
+                      child: Text(
+                        AppCubit.get(context).itemModel!.data![productIndex].name!,
+                        textAlign: AppCubit
+                            .get(context)
+                            .isRtl ? TextAlign.end : TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 space20Vertical(context),
-                Text(
-                  'Product Description Product DescriptionProduct Product Description Product DescriptionProduct Product Description Product DescriptionProduct ',
-                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
-                  ),
-                ),
-                space40Vertical(context),
+                myDivider(context),
+                space20Vertical(context),
                 Row(
                   children: [
                     Expanded(
-                      flex: 2,
-                      child: MyButton(
-                        onPressed: (){},
-                        text: appTranslation(context).addToCart,
+                      child: Text(
+                        '${appTranslation(context).productCategory}: ',
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
                       ),
                     ),
-                    space8Horizontal(context),
                     Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: mainColorRGB.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(
-                            responsiveValue(
-                              context,
-                              8.0,
-                            ),
-                          ),
-                        ),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: IconButton(
-                                    onPressed: ()
-                                    {
-                                      AppCubit.get(context).counterPlus();
-                                    },
-                                    icon: const Icon(
-                                        Icons.add,
-                                        color: mainColorRGB,
-                                    ),
-                                ),
-                              ),
-                              Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      AppCubit.get(context).numOfProducts.toString(),
-                                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                                          fontWeight: FontWeight.w500,
-                                          color: mainColorRGB,
-                                        ),
-                                    ),
-                                  ),
-                              ),
-                              Expanded(
-                                child: IconButton(
-                                  onPressed: ()
-                                  {
-                                    AppCubit.get(context).counterMin();
-                                  },
-                                  icon: const Icon(
-                                    Icons.remove,
-                                    color: mainColorRGB,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                      child: Text(
+                        AppCubit.get(context).itemModel!.data![productIndex].categoryId!,
+                        textAlign: AppCubit
+                            .get(context)
+                            .isRtl ? TextAlign.end : TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
                         ),
                       ),
                     ),
                   ],
+                ),
+                space20Vertical(context),
+                myDivider(context),
+                space20Vertical(context),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${appTranslation(context).productDescription}: ',
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        AppCubit.get(context).itemModel!.data![productIndex].description!,
+                        textAlign: AppCubit
+                            .get(context)
+                            .isRtl ? TextAlign.end : TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                space20Vertical(context),
+                myDivider(context),
+                space20Vertical(context),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${appTranslation(context).productVideoUrl}: ',
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: SelectableText(
+                        AppCubit.get(context).itemModel!.data![productIndex].vedioUrl! != ''?
+                        AppCubit.get(context).itemModel!.data![productIndex].vedioUrl! :
+                        appTranslation(context).notAvailable,
+                        textAlign: AppCubit
+                            .get(context)
+                            .isRtl ? TextAlign.end : TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                space20Vertical(context),
+                myDivider(context),
+
+                space40Vertical(context),
+                MyButton(
+                  onPressed: ()
+                  {
+
+                  },
+                  text: appTranslation(context).addToCart,
                 ),
               ],
             ),
