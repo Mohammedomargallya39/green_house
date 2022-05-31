@@ -118,6 +118,23 @@ class UserItemsError extends AppState {
   });
 }
 
+class DisplayDevicesItemsLoading extends AppState {}
+
+class DisplayDevicesItemsSuccess extends AppState {}
+
+class DesktopComputersItemsLoading extends AppState {}
+
+class DesktopComputersItemsSuccess extends AppState {}
+
+class VideoGamingItemsLoading extends AppState {}
+
+class VideoGamingItemsSuccess extends AppState {}
+
+class CellularDevicesItemsLoading extends AppState {}
+
+class CellularDevicesItemsSuccess extends AppState {}
+
+
 
 
 

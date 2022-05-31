@@ -3,8 +3,8 @@ import '../../../../core/util/constants.dart';
 import '../../../../core/util/widgets/back_scaffold.dart';
 import '../../../../core/util/widgets/products.dart';
 
-class VedioGamingCategoryPage extends StatelessWidget {
-  const VedioGamingCategoryPage({Key? key}) : super(key: key);
+class VideoGamingCategoryPage extends StatelessWidget {
+  const VideoGamingCategoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

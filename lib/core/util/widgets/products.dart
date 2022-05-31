@@ -10,7 +10,7 @@ import '../cubit/cubit.dart';
 import 'custom_delegate.dart';
 
 class Products extends StatelessWidget {
-  Products({Key? key,
+  const Products({Key? key,
     required this.product,}
       ) : super(key: key);
   final String? product;
