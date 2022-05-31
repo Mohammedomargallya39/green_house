@@ -1,17 +1,19 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:green_house/features/categories/presentation/widgets/desktop_computers_items.dart';
+import 'package:green_house/features/categories/presentation/widgets/video_gaming_items.dart';
+import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/cubit/state.dart';
-import '../../../../core/util/widgets/custom_delegate.dart';
-import '../../../product_details/presentaion/pages/product_details_page.dart';
-import '../pages/cellural_devices_page.dart';
-import '../pages/desktop_computers_page.dart';
-import '../pages/display_devices_page.dart';
-import '../pages/video_gaming_page.dart';
-import 'category items.dart';
+import '../pages/cellular_devices_items_page.dart';
+import '../pages/desktop_computers_items_page.dart';
+import '../pages/display_devices_items_page.dart';
+import '../pages/video_gaming_items_page.dart';
+import 'cellural_devices_items.dart';
+import 'display_devices_items.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({Key? key}) : super(key: key);
@@ -29,46 +31,55 @@ class CategoriesWidget extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                CategoryItems(
-                  function: ()
-                  {
-                    navigateTo(context,  const DisplayDevicesCategoryPage());
-                  },
-                  productName: 'MSI Nvidia GTX 1660 Ti',
-                  productImage: 'assets/images/shopping.png',
-                  categoryTitle: appTranslation(context).displayDevices,
+            child: ConditionalBuilder(
+              condition: AppCubit.get(context).itemModel != null,
+              builder: (context)=> Column(
+                children: [
+                  DisplayDevicesItems(
+                    categoryTitle: appTranslation(context).displayDevices,
+                    function: ()
+                    {
+                      navigateTo(context, const DisplayDevicesItemsPage());
+                    },
+                  ),
+                  DesktopComputersItems(
+                    categoryTitle: appTranslation(context).desktopComputers,
+                    function: ()
+                    {
+                      navigateTo(context, const DesktopComputersItemsPage());
+                    },
+                  ),
+                  VideoGamingItems(
+                    categoryTitle: appTranslation(context).videoGaming,
+                    function: ()
+                    {
+                      navigateTo(context, const  VideoGamingItemsPage());
+                    },
+                  ),
+                  CellularDevicesItems(
+                    categoryTitle: appTranslation(context).cellularDevices,
+                    function: ()
+                    {
+                      navigateTo(context, const  CellularDevicesItemsPage());
+                    },
+                  ),
+
+                ],
+              ),
+              fallback: (context) => Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: responsiveValue(
+                    context,
+                    350.0,
+                  ),
                 ),
-                CategoryItems(
-                  function: ()
-                  {
-                    navigateTo(context, const DeskTopComputersCategoryPage());
-                  },
-                  productName: 'Laptop Asus',
-                  productImage: 'assets/images/sell.png',
-                  categoryTitle: appTranslation(context).desktopComputers,
+                child: Center(
+                    child: CircularProgressIndicator(
+                      color: HexColor(greenColor),
+                    )
+
                 ),
-                CategoryItems(
-                  function: ()
-                  {
-                    navigateTo(context, const VedioGamingCategoryPage());
-                  },
-                  productName: 'Pes 2022',
-                  productImage: 'assets/images/market.png',
-                  categoryTitle: appTranslation(context).videoGaming,
-                ),
-                CategoryItems(
-                  function: ()
-                  {
-                    navigateTo(context, const CellularDevicesCategoryPage());
-                  },
-                  productName: 'MSI Nvidia GTX 1660 Ti',
-                  productImage: 'assets/images/shopping.png',
-                  categoryTitle: appTranslation(context).cellularDevices,
-                ),
-              ],
-            ),
+              ),            ),
           ),
         );
       },

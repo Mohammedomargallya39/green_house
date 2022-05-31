@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ItemModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<ProductData>? data;
 
   ItemModel({this.status, this.message, this.data});
 
@@ -13,9 +13,9 @@ class ItemModel {
     message = json['message'];
     debugPrint(message);
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ProductData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(ProductData.fromJson(v));
       });
     }
   }
@@ -31,7 +31,7 @@ class ItemModel {
   }
 }
 
-class Data {
+class ProductData {
   String? name;
   String? image;
   String? vedioUrl;
@@ -42,7 +42,7 @@ class Data {
   int? id;
 
 
-  Data(
+  ProductData(
       {
         this.name,
         this.image,
@@ -54,7 +54,7 @@ class Data {
         this.id
       });
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ProductData.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     debugPrint(name);
     image = json['image'];

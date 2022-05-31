@@ -430,6 +430,54 @@ class AppCubit extends Cubit<AppState> {
   }
 
 
+  List<ProductData>? displayDevicesItemModel;
+  
+  void getDisplayDevices() async
+  {
+    displayDevicesItemModel = null;
+    emit(DisplayDevicesItemsLoading());
+    displayDevicesItemModel = itemModel!.data!.where(
+            (element) => element.categoryId == 'Display Monitors'
+    ).toList();
+    emit(DisplayDevicesItemsSuccess());
+  }
+
+  List<ProductData>? desktopComputersItemModel;
+
+  void getDesktopComputers() async
+  {
+    desktopComputersItemModel = null;
+    emit(DesktopComputersItemsLoading());
+    desktopComputersItemModel = itemModel!.data!.where(
+            (element) => element.categoryId == 'Desktop Computers'
+    ).toList();
+    emit(DesktopComputersItemsSuccess());
+  }
+
+  List<ProductData>? videoGamingItemModel;
+
+  void getVideoGaming() async
+  {
+    videoGamingItemModel = null;
+    emit(VideoGamingItemsLoading());
+    videoGamingItemModel = itemModel!.data!.where(
+            (element) => element.categoryId == 'Video Gaming'
+    ).toList();
+    emit(VideoGamingItemsSuccess());
+  }
+
+  List<ProductData>? cellularItemModel;
+
+  void getCellularDevices() async
+  {
+    cellularItemModel = null;
+    emit(CellularDevicesItemsLoading());
+    cellularItemModel = itemModel!.data!.where(
+            (element) => element.categoryId == 'Cellular Devices'
+    ).toList();
+    emit(CellularDevicesItemsSuccess());
+  }
+
   ItemModel? itemModel;
   void getItems() async
   {
@@ -450,6 +498,10 @@ class AppCubit extends Cubit<AppState> {
         {
           itemModel = data;
           emit(UserItemsSuccess());
+          getDisplayDevices();
+          getDesktopComputers();
+          getVideoGaming();
+          getCellularDevices();
         }
     );
 

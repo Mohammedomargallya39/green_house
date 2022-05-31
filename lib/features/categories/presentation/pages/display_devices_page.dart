@@ -13,7 +13,7 @@ class DisplayDevicesCategoryPage extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Products(
           product: appTranslation(context).displayDevices,
-    ),
+          ),
         )
     );
   }
