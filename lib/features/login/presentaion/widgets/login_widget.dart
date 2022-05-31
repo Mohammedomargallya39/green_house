@@ -33,6 +33,12 @@ class LoginWidget extends StatelessWidget {
         if(state is UserLoginSuccess) {
           sl<CacheHelper>().put('token', state.token);
           token = state.token;
+          sl<CacheHelper>().put('points', state.points);
+          token = state.token;
+          sl<CacheHelper>().put('name', state.name);
+          token = state.token;
+          sl<CacheHelper>().put('email', state.email);
+          token = state.token;
           Fluttertoast.showToast(
             msg: 'login success',
           );
