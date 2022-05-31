@@ -41,12 +41,22 @@ void main() async {
       .loadString('assets/translations/${isRtl ? 'ar' : 'en'}.json');
 
   token = await sl<CacheHelper>().get('token');
-
   debugPrintFullText('My Current Token => $token');
 
+  pointsCached = await sl<CacheHelper>().get('points');
+  debugPrintFullText('My Current pointsCached => $pointsCached');
+
+  nameCached = await sl<CacheHelper>().get('name');
+  debugPrintFullText('My Current nameCached => $nameCached');
+
+  emailCached = await sl<CacheHelper>().get('email');
+  debugPrintFullText('My Current emailCached => $emailCached');
 
   runApp(MyApp(
     token: token,
+    email: emailCached,
+    name: nameCached,
+    points: pointsCached,
     isRtl: isRtl,
     isDark: isDark,
     translation: translation,
@@ -55,6 +65,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   String? token;
+  String? name;
+  String? email;
+  int? points;
+
   final bool isRtl;
   final bool isDark;
   final String translation;
@@ -62,6 +76,9 @@ class MyApp extends StatelessWidget {
   MyApp({
     Key? key,
     required this.token,
+    required this.name,
+    required this.email,
+    required this.points,
     required this.isRtl,
     required this.isDark,
     required this.translation,
@@ -92,9 +109,6 @@ class MyApp extends StatelessWidget {
             theme: AppCubit.get(context).lightTheme,
             darkTheme: AppCubit.get(context).darkTheme,
             home:
-            // const SettingsPage(),
-            // const LoginScreen(),
-            //const MainPageScreen(),
             token != null ? const MainPageScreen() :const LoginScreen() ,
           );
         },

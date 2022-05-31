@@ -31,9 +31,17 @@ class UserLoginLoading extends AppState {}
 
 class UserLoginSuccess extends AppState {
   final String token;
+  final int points;
+  final String name;
+  final String email;
+
+
 
   UserLoginSuccess({
     required this.token,
+    required this.points,
+    required this.name,
+    required this.email,
   });
 }
 
@@ -100,13 +108,7 @@ class SelectGalleryImageState extends AppState {}
 
 class UserItemsLoading extends AppState {}
 
-class UserItemsSuccess extends AppState {
-  final String token;
-
-  UserItemsSuccess({
-    required this.token,
-  });
-}
+class UserItemsSuccess extends AppState {}
 
 class UserItemsError extends AppState {
   final String message;

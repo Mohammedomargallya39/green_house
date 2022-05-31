@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:green_house/features/setting/presentation/pages/add_product_page.dart';
+import 'package:green_house/core/network/remote/api_endpoints.dart';
 import 'package:green_house/features/setting/presentation/widgets/setting_item.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
@@ -57,7 +57,7 @@ class SettingsWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Account',
+                              nameCached!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodyText1!.copyWith(
@@ -67,7 +67,7 @@ class SettingsWidget extends StatelessWidget {
                             ),
                             space3Vertical(context),
                             Text(
-                              'Account@test.com',
+                              emailCached!,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context).textTheme.caption!.copyWith(
@@ -80,10 +80,6 @@ class SettingsWidget extends StatelessWidget {
                      // const Spacer(),
                       Expanded(
                         child: Container(
-                          // width: responsiveValue(
-                          //   context,
-                          //   120.0,
-                          // ),
                           height: responsiveValue(
                             context,
                             50.0,
@@ -119,7 +115,7 @@ class SettingsWidget extends StatelessWidget {
                                 ),
                                 space10Horizontal(context),
                                 Text(
-                                  '444',
+                                  '$pointsCached',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: Theme.of(context).textTheme.caption!.copyWith(
@@ -329,7 +325,6 @@ class SettingsWidget extends StatelessWidget {
                               popButtonText: appTranslation(context).cancel,
                               pushButtonText:  appTranslation(context).yes,
                               pushButtonVoidCallback: (){
-                                /// في مشكلة هنا///
                                 Fluttertoast.showToast(
                                   msg: 'logout success',
                                 );

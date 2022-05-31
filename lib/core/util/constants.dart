@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_house/core/util/translation.dart';
 import 'package:green_house/core/util/widgets/my_button.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:restart_app/restart_app.dart';
 import '../../features/login/presentaion/pages/login_page.dart';
 import '../di/injection.dart';
 import '../models/select_government_model.dart';
@@ -652,6 +653,7 @@ void signOut (context)
     if(value)
     {
       navigateAndFinish(context, const LoginScreen(),);
+      Restart.restartApp();
     }
   });
 }

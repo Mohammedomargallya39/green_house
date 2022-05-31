@@ -45,87 +45,118 @@ class Products extends StatelessWidget {
               ),
             ),
             ConditionalBuilder(
-              condition: AppCubit.get(context).itemModel != null,
-              builder: (context) =>GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) => InkWell(
-                  onTap: ()
-                  {
-                    navigateTo(context, ProductDetailsPage(
-                      productIndex: index,
-                    ));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: responsiveValue(
-                        context,
-                        12.0,
+              condition: state is UserItemsLoading,
+              builder: (context) => Padding(
+              padding: EdgeInsets.symmetric(
+                   vertical: responsiveValue(
+                             context,
+                             150.0,
+                   ),
+              ),
+              child: Center(
+                    child: CircularProgressIndicator(
+                           color: HexColor(greenColor),
+                    )
+
+              ),
+              ),
+              fallback: (context) => ConditionalBuilder(
+                condition: AppCubit.get(context).itemModel != null,
+                builder: (context) => ConditionalBuilder(
+                  condition: AppCubit.get(context).itemModel!.data != null,
+                  builder: (context) => GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: ()
+                      {
+                        navigateTo(context, ProductDetailsPage(
+                          productIndex: index,
+                        ));
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: responsiveValue(
+                            context,
+                            12.0,
+                          ),
+                          vertical: responsiveValue(
+                            context,
+                            12.0,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              AppCubit.get(context).itemModel!.data![index].image!,
+                              height: responsiveValue(
+                                context,
+                                100.0,
+                              ),
+                            ),
+                            space10Vertical(context),
+                            Text(
+                              AppCubit.get(context).itemModel!.data![index].name!,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.caption?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                    ),
+                    itemCount: AppCubit.get(context).itemModel!.data!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10.0,
+                      crossAxisSpacing: 8.0,
+                      height: responsiveValue(
+                        context,
+                        160.0,
+                      ),
+                    ),
+                  ),
+                  fallback: (context) => Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: responsiveValue(
                         context,
-                        12.0,
+                        150.0,
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.network(
-                          AppCubit.get(context).itemModel!.data![index].image!,
-                          height: responsiveValue(
-                            context,
-                            100.0,
-                          ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/images/empty_box.svg',
+                        color: HexColor(greenColor),
+                        height: responsiveValue(
+                          context,
+                          200.0,
                         ),
-                        space10Vertical(context),
-                        Text(
-                          AppCubit.get(context).itemModel!.data![index].name!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.caption?.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: AppCubit.get(context).isDark ? whiteColor.withOpacity(0.7) : blackColor,
-                          ),
+                        width: responsiveValue(
+                          context,
+                          200.0,
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-                itemCount: AppCubit.get(context).itemModel!.data!.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 8.0,
-                  height: responsiveValue(
-                    context,
-                    160.0,
+                fallback: (context) => Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: responsiveValue(
+                      context,
+                      150.0,
+                    ),
                   ),
-                ),
-              ),
-              fallback: (context) => Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: responsiveValue(
-                    context,
-                    150.0,
+                  child: Center(
+                      child: CircularProgressIndicator(
+                        color: HexColor(greenColor),
+                      )
+
                   ),
-                ),
-                child: Center(
-                    child: CircularProgressIndicator(
-                      color: HexColor(greenColor),
-                    )
-                  // SvgPicture.asset(
-                  //   'assets/images/empty_box.svg',
-                  //   color: HexColor(greenColor),
-                  //   height: responsiveValue(
-                  //     context,
-                  //     200.0,
-                  //   ),
-                  //   width: responsiveValue(
-                  //     context,
-                  //     200.0,
-                  //   ),
-                  // ),
                 ),
               ),
             ),

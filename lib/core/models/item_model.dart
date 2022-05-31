@@ -39,15 +39,20 @@ class Data {
   String? categoryId;
   String? userId;
   String? notes;
+  int? id;
+
 
   Data(
-      {this.name,
+      {
+        this.name,
         this.image,
         this.vedioUrl,
         this.description,
         this.categoryId,
         this.userId,
-        this.notes});
+        this.notes,
+        this.id
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -64,17 +69,29 @@ class Data {
     debugPrint(userId);
     notes = json['notes'];
     debugPrint(notes);
+    id = json['id'];
+    debugPrint('$id');
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
+    debugPrint(name);
     data['image'] = image;
+    debugPrint(image);
     data['vedio_url'] = vedioUrl;
+    debugPrint(vedioUrl);
     data['description'] = description;
+    debugPrint(description);
     data['category_id'] = categoryId;
+    debugPrint(categoryId);
     data['user_id'] = userId;
+    debugPrint(userId);
     data['notes'] = notes;
+    debugPrint(notes);
+    data['id'] = id;
+    debugPrint('$id');
+
     return data;
   }
 }

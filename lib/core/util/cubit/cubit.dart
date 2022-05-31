@@ -309,17 +309,16 @@ class AppCubit extends Cubit<AppState> {
               message: failure,
           )
           );
-          /// error in failure
           debugPrint(failure.toString());
         },
             (data)
           {
-
-            /// error in data
-
             loginModel = data;
              emit(UserLoginSuccess(
-                 token: loginModel!.token,
+                 token: loginModel!.data!.accessToken!,
+                 email: loginModel!.data!.email!,
+                 name:  loginModel!.data!.name!,
+                 points:loginModel!.data!.currentPoints!,
              ));
 
   }
@@ -356,20 +355,16 @@ class AppCubit extends Cubit<AppState> {
     register.fold(
             (failure)
         {
-          emit(UserLoginError(
+          emit(UserRegisterError(
             message: failure,
           )
           );
-          /// error in failure
           debugPrint(failure.toString());
         },
             (data)
         {
-
-          /// error in data
-
           registerModel = data;
-          emit(UserLoginSuccess(
+          emit(UserRegisterSuccess(
             token: '${registerModel!.data?.accessToken}',
           ));
 
@@ -423,17 +418,6 @@ class AppCubit extends Cubit<AppState> {
     emit(NumMinInCart());
   }
 
-  // final ImagePicker cameraProduct = ImagePicker();
-  // File? cameraProductImage;
-  // void selectCameraImage() async
-  // {
-  //   cameraProduct.pickImage(source: ImageSource.camera).then((value)
-  //   {
-  //     cameraProductImage = File(value!.path);
-  //     emit(SelectCameraImageSate());
-  //   });
-  // }
-
   final ImagePicker galleryProduct = ImagePicker();
   File? galleryProductImage;
   void selectGalleryImage() async
@@ -449,8 +433,8 @@ class AppCubit extends Cubit<AppState> {
   ItemModel? itemModel;
   void getItems() async
   {
+    itemModel = null;
     emit(UserItemsLoading());
-
     final items = await _repository.getItems();
 
     items.fold(
@@ -465,10 +449,7 @@ class AppCubit extends Cubit<AppState> {
             (data)
         {
           itemModel = data;
-          emit(UserItemsSuccess(
-            token: '${registerModel!.data?.accessToken}',
-          ));
-
+          emit(UserItemsSuccess());
         }
     );
 

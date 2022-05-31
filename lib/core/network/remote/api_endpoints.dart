@@ -2,6 +2,11 @@ const String baseUrl = 'https://pro.greenhouse-eg.info/api/';
 
 String? token;
 
+String? nameCached;
+
+String? emailCached;
+
+int? pointsCached;
 
 const String loginUrl = 'login';
 
