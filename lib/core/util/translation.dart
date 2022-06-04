@@ -83,6 +83,8 @@ class TranslationModel {
   late String productDescription;
   late String productVideoUrl;
   late String notAvailable;
+  late String addToCartSuccessfully;
+
 
 
   TranslationModel.fromJson(Map<String, dynamic> json) {
@@ -170,6 +172,7 @@ class TranslationModel {
     productDescription = json['productDescription'];
     productVideoUrl = json['productVideoUrl'];
     notAvailable = json['notAvailable'];
+    addToCartSuccessfully = json['addToCartSuccessfully'];
   }
 
   Map toJson() => {
@@ -257,5 +260,6 @@ class TranslationModel {
         'productDescription': productDescription,
         'productVideoUrl': productVideoUrl,
         'notAvailable': notAvailable,
+        'addToCartSuccessfully': addToCartSuccessfully
   };
 }

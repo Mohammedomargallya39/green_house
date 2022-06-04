@@ -7,6 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/widgets/custom_delegate.dart';
+import '../../../product_details/presentaion/pages/item_video_gaming_details_page.dart';
 import '../../../product_details/presentaion/pages/product_details_page.dart';
 
 
@@ -52,7 +53,8 @@ class VideoGamingItemsScreen extends StatelessWidget {
                 itemBuilder: (context, index) => InkWell(
                   onTap: ()
                   {
-                    navigateTo(context, ProductDetailsPage(
+                    navigateTo(context, ItemVideoGamingDetailsPage(
+                      itemId: AppCubit.get(context).videoGamingItemModel![index].id!,
                       productIndex: index,
                     ));
                   },

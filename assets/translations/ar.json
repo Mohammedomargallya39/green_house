@@ -82,7 +82,9 @@
   "productCategory": "فئة المنتج",
   "productDescription": "وصف المنتج",
   "productVideoUrl": "رابط الفيديو",
-  "notAvailable": "غير متاح"
+  "notAvailable": "غير متاح",
+  "addToCartSuccessfully": "تمت إضافة المنتج إلى السلة بنجاح"
+
 
 
 }

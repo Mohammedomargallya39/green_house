@@ -7,7 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/widgets/custom_delegate.dart';
-import '../../../product_details/presentaion/pages/product_details_page.dart';
+import '../../../product_details/presentaion/pages/item_display_device_details_page.dart';
 
 
 class DisplayDevicesItemsScreen extends StatelessWidget {
@@ -54,7 +54,8 @@ class DisplayDevicesItemsScreen extends StatelessWidget {
                 itemBuilder: (context, index) => InkWell(
                   onTap: ()
                   {
-                    navigateTo(context, ProductDetailsPage(
+                    navigateTo(context, ItemDisplayDeviceDetailsPage(
+                      itemId: AppCubit.get(context).displayDevicesItemModel![index].id!,
                       productIndex: index,
                     ));
                   },

@@ -14,7 +14,7 @@ const String registerUrl = 'register';
 
 const String getItemsUrl = 'items';
 
-//const String logoutUrl = 'api/logout';
+const String addToCartUrl = 'add-to-cart';
 
 
 

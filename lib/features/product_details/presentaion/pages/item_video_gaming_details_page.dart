@@ -6,13 +6,21 @@ import '../widgets/item_video_gaming_details_widget.dart';
 import '../widgets/product_details_widget.dart';
 
 class ItemVideoGamingDetailsPage extends StatelessWidget {
-  const ItemVideoGamingDetailsPage({Key? key , required this.productIndex}) : super(key: key);
+  const ItemVideoGamingDetailsPage({
+    Key? key ,
+    required this.productIndex,
+    required this.itemId,
+  }) : super(key: key);
   final int productIndex;
+  final int itemId;
 
   @override
   Widget build(BuildContext context) {
     return BackScaffold(
-      body: ItemVideoGamingDetailsWidget(productIndex: productIndex,),
+      body: ItemVideoGamingDetailsWidget(
+        productIndex: productIndex,
+        itemId: itemId,
+      ),
     );
   }
 }

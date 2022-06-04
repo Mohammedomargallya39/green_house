@@ -89,6 +89,7 @@ class VideoGamingItems extends StatelessWidget {
                     onTap: ()
                     {
                       navigateTo(context, ItemVideoGamingDetailsPage(
+                        itemId: AppCubit.get(context).videoGamingItemModel![index].id!,
                         productIndex: index,
                       ));
                     },

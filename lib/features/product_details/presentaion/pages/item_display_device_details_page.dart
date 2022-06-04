@@ -5,13 +5,21 @@ import '../widgets/item_display_device_details_widget.dart';
 import '../widgets/product_details_widget.dart';
 
 class ItemDisplayDeviceDetailsPage extends StatelessWidget {
-  const ItemDisplayDeviceDetailsPage({Key? key , required this.productIndex}) : super(key: key);
+  const ItemDisplayDeviceDetailsPage({
+    Key? key ,
+    required this.productIndex,
+    required this.itemId,
+  }) : super(key: key);
   final int productIndex;
+  final int itemId;
 
   @override
   Widget build(BuildContext context) {
     return BackScaffold(
-      body: ItemDisplayDeviceDetailsWidget(productIndex: productIndex,),
+      body: ItemDisplayDeviceDetailsWidget(
+        productIndex: productIndex,
+        itemId: itemId,
+      ),
     );
   }
 }
