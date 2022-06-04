@@ -73,6 +73,7 @@ class Products extends StatelessWidget {
                       {
                         navigateTo(context, ProductDetailsPage(
                           productIndex: index,
+                          itemId: AppCubit.get(context).itemModel!.data![index].id!,
                         ));
                       },
                       child: Padding(

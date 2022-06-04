@@ -89,6 +89,7 @@ class CellularDevicesItems extends StatelessWidget {
                     onTap: ()
                     {
                       navigateTo(context, ItemCellularDevicesDetailsPage(
+                        itemId: AppCubit.get(context).cellularItemModel![index].id!,
                         productIndex: index,
                       ));
                     },

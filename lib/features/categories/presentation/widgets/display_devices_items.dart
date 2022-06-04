@@ -89,6 +89,7 @@ class DisplayDevicesItems extends StatelessWidget {
                     onTap: ()
                     {
                       navigateTo(context, ItemDisplayDeviceDetailsPage(
+                        itemId: AppCubit.get(context).displayDevicesItemModel![index].id!,
                         productIndex: index,
                       ));
                     },

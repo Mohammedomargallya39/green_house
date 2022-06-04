@@ -7,8 +7,13 @@ import 'package:green_house/core/util/widgets/my_button.dart';
 import '../../../../core/util/cubit/cubit.dart';
 
 class ItemDesktopComputerDetailsWidget extends StatelessWidget {
-  const ItemDesktopComputerDetailsWidget({Key? key , required this.productIndex}) : super(key: key);
+  const ItemDesktopComputerDetailsWidget({
+    Key? key ,
+    required this.productIndex,
+    required this.itemId,
+  }) : super(key: key);
   final int productIndex;
+  final int itemId;
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +162,9 @@ class ItemDesktopComputerDetailsWidget extends StatelessWidget {
                 MyButton(
                   onPressed: ()
                   {
-
+                    AppCubit.get(context).addCart(
+                        itemId: itemId
+                    );
                   },
                   text: appTranslation(context).addToCart,
                 ),

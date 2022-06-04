@@ -134,6 +134,18 @@ class CellularDevicesItemsLoading extends AppState {}
 
 class CellularDevicesItemsSuccess extends AppState {}
 
+class AddCartItemsLoading extends AppState {}
+
+class AddCartItemsSuccess extends AppState {}
+
+class AddCartItemsError extends AppState {
+  final String message;
+
+  AddCartItemsError({
+    required this.message,
+  });
+}
+
 
 
 

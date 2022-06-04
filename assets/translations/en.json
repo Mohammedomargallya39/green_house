@@ -82,7 +82,9 @@
   "productCategory": "Product Category",
   "productDescription": "Product Description",
   "productVideoUrl": "Product Video Url",
-  "notAvailable": "Not Available"
+  "notAvailable": "Not Available",
+  "addToCartSuccessfully": "Product Added to cart successfully"
+
 
 
 }

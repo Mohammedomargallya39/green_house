@@ -10,9 +10,14 @@ import '../models/register_model.dart';
 import 'local/cache_helper.dart';
 
 abstract class Repository {
+
   Future<Either<String, LoginModel>> login({
     required String email,
     required String password,
+  });
+
+  Future<Either<String, void>> addCart({
+    required int itemId,
   });
 
   // Future<Either<String, LogOutModel>> logout();
@@ -69,6 +74,34 @@ class RepoImplementation extends Repository {
 
     // TODO: implement login
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<String, void>> addCart(
+      {
+        required int itemId,
+      }
+      ) async
+  { return _basicErrorHandling<void>(
+      onSuccess: () async
+      {
+        final Response f = await dioHelper.post(
+            url: addToCartUrl,
+            token: token,
+            data: {
+              'item_id': itemId,
+            }
+        );
+        },
+      onServerError: (exception) async
+      {
+        debugPrint(exception.message);
+        return exception.message;
+      }
+  );
+
+  // TODO: implement login
+  throw UnimplementedError();
   }
 
 

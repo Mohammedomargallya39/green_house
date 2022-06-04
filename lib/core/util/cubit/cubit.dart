@@ -507,5 +507,32 @@ class AppCubit extends Cubit<AppState> {
 
   }
 
+  void addCart(
+  {
+  required int itemId,
+  }) async
+  {
+    emit(AddCartItemsLoading());
+    final items = await _repository.addCart(
+        itemId: itemId
+    );
+
+    items.fold(
+            (failure)
+        {
+          emit(AddCartItemsError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          emit(AddCartItemsSuccess());
+        }
+    );
+
+  }
+
 
 }

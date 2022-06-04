@@ -89,6 +89,7 @@ class DesktopComputersItems extends StatelessWidget {
                     onTap: ()
                     {
                       navigateTo(context, ItemDesktopComputerDetailsPage(
+                        itemId: AppCubit.get(context).desktopComputersItemModel![index].id!,
                         productIndex: index,
                       ));
                     },
