@@ -1,3 +1,4 @@
+import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'core/util/cubit/cubit.dart';
 import 'core/util/cubit/state.dart';
 import 'features/login/presentaion/pages/login_page.dart';
 import 'features/main/pages/main_page.dart';
+import 'features/no connection/presentation/pages/no_connection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +62,7 @@ void main() async {
     isRtl: isRtl,
     isDark: isDark,
     translation: translation,
+    startWidget: token != null ? const MainPageScreen() :const LoginScreen(),
   ));
 }
 
@@ -68,7 +71,7 @@ class MyApp extends StatelessWidget {
   String? name;
   String? email;
   int? points;
-
+  final Widget startWidget;
   final bool isRtl;
   final bool isDark;
   final String translation;
@@ -82,6 +85,8 @@ class MyApp extends StatelessWidget {
     required this.isRtl,
     required this.isDark,
     required this.translation,
+    required this.startWidget,
+
   }) : super(key: key);
 
   @override
@@ -95,11 +100,21 @@ class MyApp extends StatelessWidget {
               rtl: isRtl,
             )..setTranslation(
               translation: translation,
-            )..getItems(),
+            )..getItems()..getCart(),
         ),
       ],
       child: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
+          DataConnectionChecker().onStatusChange.listen((status)
+          {
+            if (status == DataConnectionStatus.disconnected) {
+              debugPrint('No internet connection');
+            } else {
+              debugPrint('Internet connection is available');
+            }
+            isConnection = status;
+            debugPrint('data Connection ${isConnection.toString()}');
+          });
           return MaterialApp(
             title: 'Green House',
             debugShowCheckedModeBanner: false,
@@ -108,8 +123,9 @@ class MyApp extends StatelessWidget {
                 : ThemeMode.light,
             theme: AppCubit.get(context).lightTheme,
             darkTheme: AppCubit.get(context).darkTheme,
-            home:
-            token != null ? const MainPageScreen() :const LoginScreen() ,
+            home: isConnection == DataConnectionStatus.disconnected?
+            const NoConnectionPage() : startWidget,
+            //token != null ? const MainPageScreen() :const LoginScreen() ,
           );
         },
       ),

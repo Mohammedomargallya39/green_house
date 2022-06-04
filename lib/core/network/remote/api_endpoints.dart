@@ -16,5 +16,9 @@ const String getItemsUrl = 'items';
 
 const String addToCartUrl = 'add-to-cart';
 
+const String getCartUrl = 'show-cart';
+
+const String makeOrderUrl = 'place-order';
+
 
 

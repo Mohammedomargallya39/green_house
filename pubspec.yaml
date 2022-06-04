@@ -59,6 +59,8 @@ dependencies:
   url_launcher: ^6.0.0
   image_picker: ^0.8.5+3
   restart_app: ^1.1.0
+  data_connection_checker_nulls: ^0.0.2
+
 
 
 

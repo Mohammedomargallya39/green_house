@@ -1,3 +1,4 @@
+import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:flutter/material.dart';
 import 'package:green_house/core/util/translation.dart';
 import 'package:green_house/core/util/widgets/my_button.dart';
@@ -12,6 +13,8 @@ import 'cubit/cubit.dart';
 int selectedService = 0;
 int selectedCategory = 0;
 bool isEnglish = true;
+
+DataConnectionStatus? isConnection;
 
 const String serverFailureMessage = 'Server Failure';
 const String cacheFailureMessage = 'Cache Failure';

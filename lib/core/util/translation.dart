@@ -84,6 +84,9 @@ class TranslationModel {
   late String productVideoUrl;
   late String notAvailable;
   late String addToCartSuccessfully;
+  late String order;
+  late String madeOrderSuccessfully;
+
 
 
 
@@ -173,6 +176,8 @@ class TranslationModel {
     productVideoUrl = json['productVideoUrl'];
     notAvailable = json['notAvailable'];
     addToCartSuccessfully = json['addToCartSuccessfully'];
+    order = json['order'];
+    madeOrderSuccessfully = json['madeOrderSuccessfully'];
   }
 
   Map toJson() => {
@@ -260,6 +265,9 @@ class TranslationModel {
         'productDescription': productDescription,
         'productVideoUrl': productVideoUrl,
         'notAvailable': notAvailable,
-        'addToCartSuccessfully': addToCartSuccessfully
+        'addToCartSuccessfully': addToCartSuccessfully,
+        'order': order,
+        'madeOrderSuccessfully': madeOrderSuccessfully,
+
   };
 }
