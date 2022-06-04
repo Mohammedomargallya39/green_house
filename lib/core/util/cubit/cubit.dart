@@ -8,6 +8,7 @@ import 'package:green_house/core/util/cubit/state.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../di/injection.dart';
+import '../../models/cart_model.dart';
 import '../../models/login_model.dart';
 import '../../models/register_model.dart';
 import '../../models/select_government_model.dart';
@@ -507,6 +508,31 @@ class AppCubit extends Cubit<AppState> {
 
   }
 
+  MyCartModel? myCartModel;
+  void getCart() async
+  {
+    myCartModel = null;
+    emit(GetCartLoading());
+    final cart = await _repository.getCart();
+
+    cart.fold(
+            (failure)
+        {
+          emit(GetCartError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          myCartModel = data;
+          emit(GetCartSuccess());
+        }
+    );
+
+  }
+
   void addCart(
   {
   required int itemId,
@@ -529,6 +555,33 @@ class AppCubit extends Cubit<AppState> {
             (data)
         {
           emit(AddCartItemsSuccess());
+        }
+    );
+
+  }
+
+  void makeOrder({
+  required String orderId,
+}) async
+  {
+    emit(MakeOrderLoading());
+    final items = await _repository.makeOrder(
+      orderId: orderId
+    );
+
+    items.fold(
+            (failure)
+        {
+          emit(MakeOrderError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          emit(MakeOrderSuccess());
+          getCart();
         }
     );
 

@@ -83,7 +83,11 @@
   "productDescription": "Product Description",
   "productVideoUrl": "Product Video Url",
   "notAvailable": "Not Available",
-  "addToCartSuccessfully": "Product Added to cart successfully"
+  "addToCartSuccessfully": "Product Added to cart successfully",
+  "order": "Order",
+  "madeOrderSuccessfully": "Order Made Successfully"
+
+
 
 
 

@@ -83,7 +83,9 @@
   "productDescription": "وصف المنتج",
   "productVideoUrl": "رابط الفيديو",
   "notAvailable": "غير متاح",
-  "addToCartSuccessfully": "تمت إضافة المنتج إلى السلة بنجاح"
+  "addToCartSuccessfully": "تمت إضافة المنتج إلى السلة بنجاح",
+  "order": "طلب",
+  "madeOrderSuccessfully": "تم إنشاء الطلب بنجاح"
 
 
 

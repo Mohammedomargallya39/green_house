@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:green_house/core/network/remote/api_endpoints.dart';
 import 'package:green_house/core/network/remote/dio_helper.dart';
 import '../error/exceptions.dart';
+import '../models/cart_model.dart';
 import '../models/item_model.dart';
 import '../models/login_model.dart';
 import '../models/register_model.dart';
@@ -20,7 +21,11 @@ abstract class Repository {
     required int itemId,
   });
 
-  // Future<Either<String, LogOutModel>> logout();
+  Future<Either<String, void>> makeOrder({
+    required String orderId
+  });
+
+  Future<Either<String, MyCartModel>> getCart();
 
   Future<Either<String, RegisterModel>> register({
     required String name,
@@ -106,6 +111,35 @@ class RepoImplementation extends Repository {
 
 
   @override
+  Future<Either<String, void>> makeOrder(
+  {
+    required String orderId
+  }
+      ) async
+  { return _basicErrorHandling<void>(
+      onSuccess: () async
+      {
+        final Response f = await dioHelper.post(
+            url: makeOrderUrl,
+            token: token,
+            data:
+            {
+              'order_id': orderId,
+            }
+        );
+      },
+      onServerError: (exception) async
+      {
+        debugPrint(exception.message);
+        return exception.message;
+      }
+  );
+  // TODO: implement login
+  throw UnimplementedError();
+  }
+
+
+  @override
   Future<Either<String, RegisterModel>> register(
       {
         required String name,
@@ -169,6 +203,30 @@ class RepoImplementation extends Repository {
   // TODO: implement login
   throw UnimplementedError();
   }
+
+  @override
+  Future<Either<String, MyCartModel>> getCart() async
+  { return _basicErrorHandling<MyCartModel>(
+      onSuccess: () async
+      {
+        final Response f = await dioHelper.get(
+          token: token,
+          url: getCartUrl,
+        );
+
+        return MyCartModel.fromJson(f.data);
+      },
+      onServerError: (exception) async
+      {
+        debugPrint(exception.message);
+        return exception.message;
+      }
+  );
+
+  // TODO: implement login
+  throw UnimplementedError();
+  }
+
 }
 
 

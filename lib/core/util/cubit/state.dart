@@ -118,6 +118,18 @@ class UserItemsError extends AppState {
   });
 }
 
+class GetCartLoading extends AppState {}
+
+class GetCartSuccess extends AppState {}
+
+class GetCartError extends AppState {
+  final String message;
+
+  GetCartError({
+    required this.message,
+  });
+}
+
 class DisplayDevicesItemsLoading extends AppState {}
 
 class DisplayDevicesItemsSuccess extends AppState {}
@@ -142,6 +154,18 @@ class AddCartItemsError extends AppState {
   final String message;
 
   AddCartItemsError({
+    required this.message,
+  });
+}
+
+class MakeOrderLoading extends AppState {}
+
+class MakeOrderSuccess extends AppState {}
+
+class MakeOrderError extends AppState {
+  final String message;
+
+  MakeOrderError({
     required this.message,
   });
 }
