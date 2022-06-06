@@ -82,6 +82,7 @@ class CartWidget extends StatelessWidget {
                       AppCubit.get(context).makeOrder(
                         orderId: '${AppCubit.get(context).myCartModel!.data![0].orderId}',
                       );
+                      debugPrint('id order is => ${AppCubit.get(context).myCartModel!.data![0].orderId}');
                     },
                     text: appTranslation(context).order,
                   ),

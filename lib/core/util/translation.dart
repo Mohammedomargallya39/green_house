@@ -85,6 +85,7 @@ class TranslationModel {
   late String notAvailable;
   late String addToCartSuccessfully;
   late String order;
+  late String orderDetails;
   late String madeOrderSuccessfully;
 
 
@@ -178,6 +179,7 @@ class TranslationModel {
     addToCartSuccessfully = json['addToCartSuccessfully'];
     order = json['order'];
     madeOrderSuccessfully = json['madeOrderSuccessfully'];
+    orderDetails = json['orderDetails'];
   }
 
   Map toJson() => {
@@ -268,6 +270,7 @@ class TranslationModel {
         'addToCartSuccessfully': addToCartSuccessfully,
         'order': order,
         'madeOrderSuccessfully': madeOrderSuccessfully,
+        'orderDetails': orderDetails,
 
   };
 }

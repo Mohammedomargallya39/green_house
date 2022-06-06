@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
               rtl: isRtl,
             )..setTranslation(
               translation: translation,
-            )..getItems()..getCart(),
+            )..getItems()..getCart()..getOrders()
         ),
       ],
       child: BlocBuilder<AppCubit, AppState>(

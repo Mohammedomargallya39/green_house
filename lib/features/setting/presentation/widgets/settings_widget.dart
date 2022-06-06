@@ -304,14 +304,14 @@ class SettingsWidget extends StatelessWidget {
                       navigateTo(context, const HelpPage());
                     },
                   ),
-                  SettingsItem(
-                    title: appTranslation(context).partners,
-                    icon: Icons.apartment_outlined,
-                    function: ()
-                    {
-                        navigateTo(context, const PartnersPage());
-                    },
-                  ),
+                  // SettingsItem(
+                  //   title: appTranslation(context).partners,
+                  //   icon: Icons.apartment_outlined,
+                  //   function: ()
+                  //   {
+                  //       navigateTo(context, const PartnersPage());
+                  //   },
+                  // ),
                   SettingsItem(
                     title: appTranslation(context).logOut,
                     icon: Icons.logout_outlined,

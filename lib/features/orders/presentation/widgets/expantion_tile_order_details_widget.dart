@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_house/core/util/widgets/my_button.dart';
@@ -5,23 +6,21 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/cubit/state.dart';
-import '../pages/order_details_page.dart';
 
-class ExpansionTileOrderWidget extends StatelessWidget {
-  const ExpansionTileOrderWidget({
+class ExpansionTileOrderDetailsWidget extends StatelessWidget {
+  const ExpansionTileOrderDetailsWidget({
     Key? key,
     required this.expansionTileTitle,
     required this.orderID,
-    required this.orderStatus,
-    required this.orderDate,
-    //required this.index,
+    required this.quantity,
+    required this.productPoints,
+
   }) : super(key: key);
 
   final String? expansionTileTitle;
   final String? orderID;
-  final String? orderStatus;
-  final String? orderDate;
-  //final int index;
+  final String? quantity;
+  final String? productPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +37,11 @@ class ExpansionTileOrderWidget extends StatelessWidget {
             ),
             child: ExpansionTile(
               trailing: Icon(
-                    AppCubit.get(context).customTileExpanded ?
-                    Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                    color: AppCubit.get(context).isDark ?
-                    whiteColor.withOpacity(0.7) : blackColor,
-                  ),
+                AppCubit.get(context).customTileExpanded ?
+                Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                color: AppCubit.get(context).isDark ?
+                whiteColor.withOpacity(0.7) : blackColor,
+              ),
               onExpansionChanged: (value)
               {
                 AppCubit.get(context).changeCustomTileExpanded();
@@ -103,7 +102,7 @@ class ExpansionTileOrderWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              appTranslation(context).orderStatus,
+                              appTranslation(context).quantity,
                               style: Theme.of(context).textTheme.caption!.copyWith(
                                 fontWeight: FontWeight.w500,
                                 fontSize: responsiveValue(
@@ -117,7 +116,7 @@ class ExpansionTileOrderWidget extends StatelessWidget {
                           space10Horizontal(context),
                           Expanded(
                             child: Text(
-                              orderStatus!,
+                              quantity!,
                               style: Theme.of(context).textTheme.caption!.copyWith(
                                 fontWeight: FontWeight.w400,
                                 fontSize: responsiveValue(
@@ -135,7 +134,7 @@ class ExpansionTileOrderWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              appTranslation(context).orderDate,
+                              appTranslation(context).productPoints,
                               style: Theme.of(context).textTheme.caption!.copyWith(
                                 fontWeight: FontWeight.w500,
                                 fontSize: responsiveValue(
@@ -149,7 +148,7 @@ class ExpansionTileOrderWidget extends StatelessWidget {
                           space10Horizontal(context),
                           Expanded(
                             child: Text(
-                              orderDate!,
+                              productPoints!,
                               style: Theme.of(context).textTheme.caption!.copyWith(
                                 fontWeight: FontWeight.w400,
                                 fontSize: responsiveValue(
@@ -161,16 +160,6 @@ class ExpansionTileOrderWidget extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ),
-                      space20Vertical(context),
-                      MyButton(
-                          onPressed: ()
-                          {
-                            navigateTo(context, OrderDetailsPage(
-                              orderID: orderID!,
-                            ));
-                          },
-                          text: appTranslation(context).orderDetails,
                       ),
                     ],
                   ),
