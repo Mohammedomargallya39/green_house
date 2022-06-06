@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_house/core/models/item_model.dart';
+import 'package:green_house/core/models/orders_model.dart';
 import 'package:green_house/core/util/cubit/state.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../di/injection.dart';
 import '../../models/cart_model.dart';
 import '../../models/login_model.dart';
+import '../../models/order_details_model.dart';
 import '../../models/register_model.dart';
 import '../../models/select_government_model.dart';
 import '../../network/local/cache_helper.dart';
@@ -438,7 +440,7 @@ class AppCubit extends Cubit<AppState> {
     displayDevicesItemModel = null;
     emit(DisplayDevicesItemsLoading());
     displayDevicesItemModel = itemModel!.data!.where(
-            (element) => element.categoryId == 'Display Monitors'
+            (element) => element.categoryId == 'Display Devices'
     ).toList();
     emit(DisplayDevicesItemsSuccess());
   }
@@ -450,7 +452,7 @@ class AppCubit extends Cubit<AppState> {
     desktopComputersItemModel = null;
     emit(DesktopComputersItemsLoading());
     desktopComputersItemModel = itemModel!.data!.where(
-            (element) => element.categoryId == 'Desktop Computers'
+            (element) => element.categoryId == 'Laptops'
     ).toList();
     emit(DesktopComputersItemsSuccess());
   }
@@ -474,7 +476,7 @@ class AppCubit extends Cubit<AppState> {
     cellularItemModel = null;
     emit(CellularDevicesItemsLoading());
     cellularItemModel = itemModel!.data!.where(
-            (element) => element.categoryId == 'Cellular Devices'
+            (element) => element.categoryId == 'Mobile Devices'
     ).toList();
     emit(CellularDevicesItemsSuccess());
   }
@@ -586,6 +588,65 @@ class AppCubit extends Cubit<AppState> {
     );
 
   }
+
+
+  MyOrdersModel? myOrdersModel;
+  void getOrders() async
+  {
+    myOrdersModel = null;
+    emit(GetOrdersLoading());
+    final orders = await _repository.getOrders();
+
+    orders.fold(
+            (failure)
+        {
+          emit(GetOrdersError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          myOrdersModel = data;
+          emit(GetOrdersSuccess());
+        }
+    );
+
+  }
+
+
+  OrderDetailsModel? orderDetailsModel;
+  void getOrderDetails(
+    {
+     required String orderId,
+    }) async
+  {
+    orderDetailsModel = null;
+    emit(GetOrderDetailsLoading());
+    final orderDetails = await _repository.getOrderDetails(
+        orderId: orderId
+    );
+
+    orderDetails.fold(
+            (failure)
+        {
+          emit(GetOrderDetailsError(
+            message: failure,
+          )
+          );
+          debugPrint(failure.toString());
+        },
+            (data)
+        {
+          orderDetailsModel = data;
+          emit(GetOrderDetailsSuccess());
+        }
+    );
+
+  }
+
+
 
 
 }

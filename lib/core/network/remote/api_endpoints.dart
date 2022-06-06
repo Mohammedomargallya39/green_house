@@ -20,5 +20,10 @@ const String getCartUrl = 'show-cart';
 
 const String makeOrderUrl = 'place-order';
 
+const String showOrdersUrl = 'show-my-orders';
+
+const String showOrderDetailsUrl = 'show-order-details/';
+
+
 
 

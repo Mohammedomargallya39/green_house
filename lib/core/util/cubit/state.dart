@@ -130,6 +130,30 @@ class GetCartError extends AppState {
   });
 }
 
+class GetOrdersLoading extends AppState {}
+
+class GetOrdersSuccess extends AppState {}
+
+class GetOrdersError extends AppState {
+  final String message;
+
+  GetOrdersError({
+    required this.message,
+  });
+}
+
+class GetOrderDetailsLoading extends AppState {}
+
+class GetOrderDetailsSuccess extends AppState {}
+
+class GetOrderDetailsError extends AppState {
+  final String message;
+
+  GetOrderDetailsError({
+    required this.message,
+  });
+}
+
 class DisplayDevicesItemsLoading extends AppState {}
 
 class DisplayDevicesItemsSuccess extends AppState {}

@@ -7,6 +7,8 @@ import '../error/exceptions.dart';
 import '../models/cart_model.dart';
 import '../models/item_model.dart';
 import '../models/login_model.dart';
+import '../models/order_details_model.dart';
+import '../models/orders_model.dart';
 import '../models/register_model.dart';
 import 'local/cache_helper.dart';
 
@@ -26,6 +28,13 @@ abstract class Repository {
   });
 
   Future<Either<String, MyCartModel>> getCart();
+
+  Future<Either<String, MyOrdersModel>> getOrders();
+
+  Future<Either<String, OrderDetailsModel>> getOrderDetails(
+  {
+    required String orderId
+  });
 
   Future<Either<String, RegisterModel>> register({
     required String name,
@@ -226,6 +235,55 @@ class RepoImplementation extends Repository {
   // TODO: implement login
   throw UnimplementedError();
   }
+
+  @override
+  Future<Either<String, MyOrdersModel>> getOrders() async
+  { return _basicErrorHandling<MyOrdersModel>(
+      onSuccess: () async
+      {
+        final Response f = await dioHelper.get(
+          url: showOrdersUrl,
+          token: token,
+        );
+
+        return MyOrdersModel.fromJson(f.data);
+      },
+      onServerError: (exception) async
+      {
+        debugPrint(exception.message);
+        return exception.message;
+      }
+  );
+
+  // TODO: implement login
+  throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<String, OrderDetailsModel>> getOrderDetails({
+  required String orderId
+}) async
+  { return _basicErrorHandling<OrderDetailsModel>(
+      onSuccess: () async
+      {
+        final Response f = await dioHelper.get(
+          url: '$showOrderDetailsUrl$orderId',
+          token: token,
+        );
+
+        return OrderDetailsModel.fromJson(f.data);
+      },
+      onServerError: (exception) async
+      {
+        debugPrint(exception.message);
+        return exception.message;
+      }
+  );
+
+  // TODO: implement login
+  throw UnimplementedError();
+  }
+
 
 }
 

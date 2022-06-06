@@ -8,9 +8,26 @@ import 'package:green_house/core/util/cubit/state.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../core/util/constants.dart';
 import 'expansion_tile_orders_widget.dart';
+import 'expantion_tile_order_details_widget.dart';
 
-class OrderWidget extends StatelessWidget {
-  const OrderWidget({Key? key}) : super(key: key);
+class OrderDetailsWidget extends StatefulWidget {
+  const OrderDetailsWidget({
+    Key? key,
+    required this.orderID,
+  }) : super(key: key);
+  final String? orderID;
+
+  @override
+  State<OrderDetailsWidget> createState() => _OrderDetailsWidgetState();
+}
+
+class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
+
+  @override
+  initState() {
+    super.initState();
+    AppCubit.get(context).getOrderDetails(orderId: widget.orderID!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +37,7 @@ class OrderWidget extends StatelessWidget {
         builder: (context, state) => Column(
           children: [
             ConditionalBuilder(
-              condition: AppCubit.get(context).myOrdersModel == null,
+              condition: AppCubit.get(context).orderDetailsModel == null,
               builder: (context) => Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -47,13 +64,13 @@ class OrderWidget extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => ExpansionTileOrderWidget(
-                  expansionTileTitle: AppCubit.get(context).myOrdersModel!.data![index].items![0].itemId,
-                  orderID: AppCubit.get(context).myOrdersModel!.data![index].items![0].orderId,
-                  orderStatus: AppCubit.get(context).myOrdersModel!.data![index].statusId,
-                  orderDate: AppCubit.get(context).myOrdersModel!.data![index].orderDate,
+                itemBuilder: (context, index) => ExpansionTileOrderDetailsWidget(
+                  expansionTileTitle: AppCubit.get(context).orderDetailsModel!.data![index].itemId,
+                  orderID: AppCubit.get(context).orderDetailsModel!.data![index].orderId,
+                  productPoints: AppCubit.get(context).orderDetailsModel!.data![index].pointsDone,
+                  quantity: AppCubit.get(context).orderDetailsModel!.data![index].quantity,
                 ),
-                itemCount: AppCubit.get(context).myOrdersModel!.data!.length,
+                itemCount: AppCubit.get(context).orderDetailsModel!.data!.length,
               ),
             ),
           ],
