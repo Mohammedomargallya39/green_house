@@ -464,7 +464,7 @@ class AppCubit extends Cubit<AppState> {
     videoGamingItemModel = null;
     emit(VideoGamingItemsLoading());
     videoGamingItemModel = itemModel!.data!.where(
-            (element) => element.categoryId == 'Video Gaming'
+            (element) => element.categoryId == 'Home Fridges'
     ).toList();
     emit(VideoGamingItemsSuccess());
   }
