@@ -78,60 +78,59 @@ class SettingsWidget extends StatelessWidget {
                         ),
                       ),
                      // const Spacer(),
-                      Expanded(
-                        child: Container(
-                          height: responsiveValue(
-                            context,
-                            50.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: HexColor(greenColor).withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(
-                              responsiveValue(
-                                context,
-                                4.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.point_of_sale,
-                                  size: 22,
-                                  color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                                ),
-                                space5Horizontal(context),
-                                Text(
-                                  appTranslation(context).myPoints,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.caption!.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-                                  ),
-                                ),
-                                space10Horizontal(context),
-                                Text(
-                                  '$pointsCached',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.caption!.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppCubit.get(context).isDark ? whiteColor : blackColor,
-
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   space16Vertical(context),
+                  Container(
+                    height: responsiveValue(
+                      context,
+                      50.0,
+                    ),
+
+                    decoration: BoxDecoration(
+                      color: HexColor(greenColor).withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(
+                        responsiveValue(
+                          context,
+                          4.0,
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.point_of_sale,
+                            size: 22,
+                            color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                          ),
+                          space5Horizontal(context),
+                          Text(
+                            appTranslation(context).myPoints,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.caption!.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+                            ),
+                          ),
+                          space10Horizontal(context),
+                          Text(
+                            '$pointsCached',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.caption!.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: AppCubit.get(context).isDark ? whiteColor : blackColor,
+
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   bigDivider(context),
                   space16Vertical(context),
 

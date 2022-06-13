@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/cubit/state.dart';
@@ -24,7 +25,13 @@ class RegisterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppCubit,AppState>(
+    return BlocConsumer<AppCubit,AppState>(
+      listener: (context, state) {
+        if(state is UserRegisterSuccess){
+          Navigator.of(context).pop();
+          Fluttertoast.showToast(msg: 'Register Success');
+        }
+      },
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.symmetric(

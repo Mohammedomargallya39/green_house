@@ -19,7 +19,7 @@ class TwoOptionsDialog extends Dialog {
     required this.pushButtonText,
     required this.pushButtonVoidCallback,
     required this.popButtonVoidCallback,
-    this.height = 140.0,
+    this.height = 160.0,
     Key? key,
   }) : super(key: key);
 
