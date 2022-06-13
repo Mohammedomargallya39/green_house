@@ -52,7 +52,7 @@ class DesktopComputersItemsScreen extends StatelessWidget {
                   onTap: ()
                   {
                     navigateTo(context, ItemDesktopComputerDetailsPage(
-                      itemId: AppCubit.get(context).displayDevicesItemModel![index].id!,
+                      itemId: AppCubit.get(context).desktopComputersItemModel![index].id!,
                       productIndex: index,
                     ));
                   },
