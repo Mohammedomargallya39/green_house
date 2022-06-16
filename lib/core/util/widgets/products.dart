@@ -93,11 +93,11 @@ class Products extends StatelessWidget {
                             Container(
                               height: responsiveValue(
                                 context,
-                                150.0,
-                              ),
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(
+                                100.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
                                     AppCubit.get(context).itemModel!.data![index].image!,
                                   ),
                                   fit: BoxFit.cover,
