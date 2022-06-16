@@ -107,9 +107,24 @@ class CellularDevicesItems extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.network(
-                            AppCubit.get(context).cellularItemModel![index].image!,
-                            //'assets/images/shopping.png'
+                          Container(
+                            height: responsiveValue(
+                              context,
+                              100.0,
+                            ),
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  AppCubit.get(context).cellularItemModel![index].image!,                              ),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                responsiveValue(
+                                  context,
+                                  10.0,
+                                ),
+                              ),
+                            ),
                           ),
                           space10Vertical(context),
                           Text(
@@ -126,15 +141,16 @@ class CellularDevicesItems extends StatelessWidget {
                       ),
                     ),
                   ),
-                  itemCount: AppCubit.get(context).cellularItemModel!.length,
+                  itemCount: 3,
 
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                     crossAxisCount: 3,
                     mainAxisSpacing: 10.0,
                     crossAxisSpacing: 8.0,
+
                     height: responsiveValue(
                       context,
-                      150.0,
+                      200.0,
                     ),
                   ),
                 ),

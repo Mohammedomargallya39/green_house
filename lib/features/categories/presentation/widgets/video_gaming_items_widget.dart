@@ -72,11 +72,23 @@ class VideoGamingItemsScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(
-                          AppCubit.get(context).videoGamingItemModel![index].image!,
+                        Container(
                           height: responsiveValue(
                             context,
                             100.0,
+                          ),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                AppCubit.get(context).videoGamingItemModel![index].image!,                             ),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              responsiveValue(
+                                context,
+                                10.0,
+                              ),
+                            ),
                           ),
                         ),
                         space10Vertical(context),
@@ -100,7 +112,7 @@ class VideoGamingItemsScreen extends StatelessWidget {
                   crossAxisSpacing: 8.0,
                   height: responsiveValue(
                     context,
-                    160.0,
+                    200.0,
                   ),
                 ),
               ),
