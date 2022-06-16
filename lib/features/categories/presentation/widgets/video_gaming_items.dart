@@ -107,9 +107,24 @@ class VideoGamingItems extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.network(
-                            AppCubit.get(context).videoGamingItemModel![index].image!,
-                            //'assets/images/shopping.png'
+                          Container(
+                            height: responsiveValue(
+                              context,
+                              100.0,
+                            ),
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    AppCubit.get(context).videoGamingItemModel![index].image!,                              ),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                responsiveValue(
+                                  context,
+                                  10.0,
+                                ),
+                              ),
+                            ),
                           ),
                           space10Vertical(context),
                           Text(
@@ -126,7 +141,7 @@ class VideoGamingItems extends StatelessWidget {
                       ),
                     ),
                   ),
-                  itemCount: AppCubit.get(context).videoGamingItemModel!.length,
+                  itemCount: 3,
 
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                     crossAxisCount: 3,
@@ -134,7 +149,7 @@ class VideoGamingItems extends StatelessWidget {
                     crossAxisSpacing: 8.0,
                     height: responsiveValue(
                       context,
-                      150.0,
+                      200.0,
                     ),
                   ),
                 ),
