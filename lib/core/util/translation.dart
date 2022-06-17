@@ -87,6 +87,8 @@ class TranslationModel {
   late String order;
   late String orderDetails;
   late String madeOrderSuccessfully;
+  late String aboutUsDescription;
+  late String howToUseDescription;
 
 
 
@@ -180,6 +182,8 @@ class TranslationModel {
     order = json['order'];
     madeOrderSuccessfully = json['madeOrderSuccessfully'];
     orderDetails = json['orderDetails'];
+    aboutUsDescription = json['aboutUsDescription'];
+    howToUseDescription = json['howToUseDescription'];
   }
 
   Map toJson() => {
@@ -271,6 +275,8 @@ class TranslationModel {
         'order': order,
         'madeOrderSuccessfully': madeOrderSuccessfully,
         'orderDetails': orderDetails,
+        'aboutUsDescription': aboutUsDescription,
+        'howToUseDescription': howToUseDescription,
 
   };
 }
