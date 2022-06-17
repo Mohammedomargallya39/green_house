@@ -8,7 +8,7 @@ import '../../../../core/util/cubit/cubit.dart';
 import '../../../../core/util/widgets/my_button.dart';
 
 class HelpWidget extends StatelessWidget {
-  HelpWidget({Key? key}) : super(key: key);
+  const HelpWidget({Key? key}) : super(key: key);
 
 
 
@@ -42,7 +42,7 @@ class HelpWidget extends StatelessWidget {
                 ),
                 space16Vertical(context),
                 Text(
-                  'about us about us about us about us about us about us about us about us about us about us about us about us about us about us ',
+                  appTranslation(context).aboutUsDescription,
                   style: Theme.of(context).textTheme.caption!.copyWith(
                     fontWeight: FontWeight.w400,
                     fontSize: responsiveValue(
@@ -66,7 +66,7 @@ class HelpWidget extends StatelessWidget {
                 ),
                 space16Vertical(context),
                 Text(
-                  'how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use how to use ',
+                  appTranslation(context).howToUseDescription,
                   style: Theme.of(context).textTheme.caption!.copyWith(
                     fontWeight: FontWeight.w400,
                     fontSize: responsiveValue(
